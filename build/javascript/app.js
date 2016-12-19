@@ -1,0 +1,71 @@
+(function() {
+    'use strict';
+
+    angular.module('transport')
+        .controller('RailViewController', RailViewController);
+
+    RailViewController.$inject = ['RailViewService'];
+
+    function RailViewController(RailViewService) {
+
+        this.railInfo = RailViewService.railInfo()
+            .then(function success(data) {
+                console.log('You got data!', data);
+            })
+            .catch(function failure(xhr) {
+                console.log('No data for you :(', xhr);
+            });
+
+    }
+
+
+}());
+
+(function() {
+    'use strict';
+
+    angular.module('transport')
+        .factory('RailViewService', RailViewService);
+
+    RailViewService.$inject = ['$http'];
+
+    function RailViewService($http) {
+        return {
+            railInfo: railInfo
+        };
+
+        function railInfo() {
+            return $http({
+                url: 'https://api.wmata.com/StationPrediction.svc/json/GetPrediction/B03',
+                method: 'get',
+                headers: {
+                    'content-type': 'application/json',
+                    'api_key': 'f44ffd8ba84f459796d5a0870957bdb7'
+                }
+            });
+        }
+    }
+
+}());
+(function() {
+    'use strict';
+
+    angular.module('transport', []);
+    //   .config(viewConfig);
+    //
+    // viewConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
+    //
+    // function viewConfig($stateProvider, $urlRouterProvider) {
+    //   $urlRouterProvider.when('', '/');
+    //
+    //   $stateProvider
+    //     .state({
+    //       name: 'Home',
+    //       url: '/',
+    //       templateUrl: 'src/index.html'
+    //     });
+    //
+    //
+    // }
+
+}());
