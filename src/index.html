@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html ng-app='transport'>
-
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css" type='text/css'>
     <title>Metro Project</title>
   </head>
 
   <body>
-    <h1 class='page-header'> D.C. Now </h1>
+    <h1 class='page-header'> Metro Pass <small>A Faster Commute!</small> </h1>
 
     <nav class='navbar navbar-inverse'>
-        <ul>
-            <li><a href='#'>Home</a></li>
-            <li><a href='#'>Bus</a></li>
-            <li><a href='#'>Metro</a></li>
-            <li><a href='#'>Login</a></li>
-        </ul>
+      <ul>
+        <li><a ui-sref='home'>Home</a></li>
+        <li><a href='#'>Bus</a></li>
+        <li><a href='#'>Metro</a></li>
+        <li><a href='#'>Login</a></li>
+      </ul>
     </nav>
-    <form ng-controller='RailViewController as railView'>
 
-    </form>
+    <main ui-view ng-controller='RailViewController as railView'>
+    </main>
 
     <script src='../node_modules/angular/angular.js'></script>
+    <script src='../node_modules/angular-ui-router/release/angular-ui-router.js'></script>
     <script src='javascript/transport.module.js'></script>
     <script src='javascript/rail-view.service.js'></script>
     <script src='javascript/rail-view.controller.js'></script>
