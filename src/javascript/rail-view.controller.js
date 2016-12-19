@@ -10,10 +10,10 @@
 
         this.railInfo = RailViewService.railInfo()
             .then(function success(data) {
-                console.log('success', data);
+                console.log('You got data!', data);
             })
             .catch(function failure(xhr) {
-                console.log('failed', xhr);
+                console.log('No data for you :(', xhr);
             });
 
     }
