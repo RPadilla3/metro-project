@@ -1,0 +1,26 @@
+{
+  "name": "metro-project",
+  "version": "1.0.0",
+  "description": "A web application that displays all relevant metro and bus information for daily commuters.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RPadilla3/metro-project.git"
+  },
+  "author": "Rodolfo Padilla",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RPadilla3/metro-project/issues"
+  },
+  "homepage": "https://github.com/RPadilla3/metro-project#readme",
+  "dependencies": {
+    "angular": "^1.6.0",
+    "grunt": "^1.0.1"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^1.1.0"
+  }
+}
