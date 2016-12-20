@@ -3,12 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css" type='text/css'>
+    <link rel="stylesheet" href="css/styles.css" type='text/css'>
     <title>Metro Project</title>
   </head>
-
   <body>
-    <h1 class='page-header'> Metro Pass <small>A Faster Commute!</small> </h1>
+    <h1 class='page-header'> Metro Pass <small>A Better Commute!</small> </h1>
 
     <nav class='navbar navbar-inverse'>
       <ul>
@@ -22,11 +21,12 @@
     <main ui-view ng-controller='RailViewController as railView'>
     </main>
 
-    <script src='../node_modules/angular/angular.js'></script>
-    <script src='../node_modules/angular-ui-router/release/angular-ui-router.js'></script>
-    <script src='javascript/transport.module.js'></script>
-    <script src='javascript/rail-view.service.js'></script>
-    <script src='javascript/rail-view.controller.js'></script>
-  </body>
+    <main id='map' class= 'map'>
+    </main>
 
+    <script src='javascript/angular.js'></script>
+    <script src='javascript/angular-ui-router.js'></script>
+    <script src='javascript/app.js'></script>
+
+  </body>
 </html>

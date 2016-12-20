@@ -50,7 +50,7 @@ module.exports = function(grunt) {
 
     concat: {
       javascript: {
-        src: ['src/javascript/**/*.js'],
+        src: ['src/javascript/transport.module.js','src/javascript/**/*.js'],
         dest: 'build/javascript/app.js'
       }
     },
@@ -88,6 +88,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
 
-  grunt.registerTask('default', ['clean', 'sass', 'jshint', 'copy', 'concat']);
+  grunt.registerTask('default', ['clean', 'sass',  'copy', 'concat']);
 
 };
