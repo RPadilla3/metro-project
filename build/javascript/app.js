@@ -1,6 +1,43 @@
 (function() {
   'use strict';
 
+  angular.module('transport', []);
+  // .config(viewConfig);
+  //
+  // viewConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
+  //
+  // function viewConfig($stateProvider, $urlRouterProvider) {
+  //   $urlRouterProvider.when('', '/');
+  //
+  //   $stateProvider
+  //   .state({
+  //     name: 'home',
+  //     url: '/',
+  //     templateUrl: 'src/views/home.template.html'
+  //   });
+  //
+  //
+  // }
+
+}());
+
+(function() {
+  'use strict';
+
+    function initMap() {
+      var map;
+        map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 39.1199273249, lng: -77.1646273343},
+        zoom: 10
+      });
+        return initMap();
+    }
+
+}());
+
+(function() {
+  'use strict';
+
   angular.module('transport')
   .controller('RailViewController', RailViewController);
 
@@ -65,28 +102,5 @@
       });
     }
   }
-
-}());
-
-(function() {
-  'use strict';
-
-  angular.module('transport', []);
-  // .config(viewConfig);
-  //
-  // viewConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
-  //
-  // function viewConfig($stateProvider, $urlRouterProvider) {
-  //   $urlRouterProvider.when('', '/');
-  //
-  //   $stateProvider
-  //   .state({
-  //     name: 'home',
-  //     url: '/',
-  //     templateUrl: 'src/views/home.template.html'
-  //   });
-  //
-  //
-  // }
 
 }());
