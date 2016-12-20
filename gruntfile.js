@@ -29,6 +29,17 @@ module.exports = function(grunt) {
         ]
       },
 
+      images: {
+        files: [
+          {
+            expand: true,
+            cwd: 'src/',
+            src: 'images/**',
+            dest: 'build/'
+          }
+        ]
+      },
+
       vendorjs: {
         files: [
           {
@@ -38,10 +49,10 @@ module.exports = function(grunt) {
             dest: 'build/javascript/'
           },
           {
-          expand: true,
-          cwd: 'node_modules/angular-ui-router/release/',
-          src: ['angular-ui-router.js'],
-          dest: 'build/javascript/'
+            expand: true,
+            cwd: 'node_modules/angular-ui-router/release/',
+            src: ['angular-ui-router.js'],
+            dest: 'build/javascript/'
           }
         ]
 
@@ -76,6 +87,10 @@ module.exports = function(grunt) {
         files: ['src/sass/**/*.scss'],
         tasks: ['sass']
       },
+      images: {
+        files: ['src/images/**'],
+        tasks: ['copy:images']
+      }
     }
 
   });
