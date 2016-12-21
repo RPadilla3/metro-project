@@ -1,20 +1,18 @@
 <main id='forms'>
   <section class='alerts'>
     <h1>Alerts</h1>
-      <p>All Station Alerts will be listed below</p>
-        <ul>
-          <li></li>
-        </ul>
+    <p>All Station Alerts will be listed below</p>
+    <ul>
+      <li ng-repeat='info in railInfo '></li>
+    </ul>
   </section>
   <section class='delays'>
     <h1>Delays</h1>
-      <p>All Rail Delays will be listed below</p>
-        <ul>
-          <li></li>
-        </ul>
+    <p>All Rail Delays will be listed below</p>
+    <ul>
+      <li></li>
+    </ul>
   </section>
-  <form>
-    <input type='submit' value='Update'>
-  </form>
+  <button ng-click='railView.railInfo()'>Update</button>
   <section mapbox class='main-map'></section>
 </main>
