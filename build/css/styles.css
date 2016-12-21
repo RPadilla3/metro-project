@@ -34,4 +34,12 @@ body {
   margin: 0;
   background-color: #544a3a; }
 
+#login-form {
+  text-align: center; }
+
+.main-map {
+  height: 400px;
+  width: 400px;
+  margin-left: 33%; }
+
 /*# sourceMappingURL=styles.css.map */

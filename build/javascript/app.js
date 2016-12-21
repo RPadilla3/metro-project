@@ -14,21 +14,44 @@
     .state({
       name: 'home',
       url: '',
-      templateUrl: '../views/home.template.html'
+      templateUrl: 'views/home.template.html'
     })
     .state({
       name: 'metro',
       url: '/metro',
-      templateUrl: '../views/metro.template.html'
+      templateUrl: 'views/metro.template.html',
+      Controller: 'RailViewController',
+      ControllerAs: 'railView'
     })
     .state({
       name: 'login',
       url: '/login',
-      templateUrl: '../views/login.template.html'
+      templateUrl: 'views/login.template.html'
     });
 
 
   }
+
+}());
+
+(function() {
+ 'use strict';
+
+ angular.module('transport')
+   .directive('mapbox', MapBox);
+
+
+   function MapBox() {
+     return {
+       restrict: 'EA',
+       link: function (scope, element) {
+         console.log(element);
+         L.mapbox.accessToken = 'pk.eyJ1IjoicnBhZGlsbGEzIiwiYSI6ImNpd3hrZjF4MTAwN20ydW82ODNyOHp3Z2UifQ.ATqkcRlunPfsvsS5SGFM6Q';
+         L.mapbox.map(element[0], 'mapbox.streets')
+           .setView([38.9072, -77.0369], 13.2);
+       }
+     };
+   }
 
 }());
 
