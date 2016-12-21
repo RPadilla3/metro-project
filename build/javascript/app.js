@@ -20,8 +20,8 @@
       name: 'metro',
       url: '/metro',
       templateUrl: 'views/metro.template.html',
-      Controller: 'RailViewController',
-      ControllerAs: 'railView'
+      controller: 'RailViewController',
+      controllerAs: 'railView'
     })
     .state({
       name: 'login',
@@ -63,23 +63,32 @@
 
   RailViewController.$inject = ['RailViewService'];
 
+  /**
+   * [RailViewController description]
+   * @param {[type]} RailViewService [description]
+   */
   function RailViewController(RailViewService) {
+    console.log('initializing RailViewController');
 
-    this.railInfo = RailViewService.railInfo()
+    this.railInfo = function railInfo(){
+     RailViewService.railInfo()
       .then(function success(data) {
       console.log('Rail Info', data);
       })
       .catch(function failure(xhr) {
       console.log('No data for you :(', xhr);
       });
+    };
 
-    this.railPark = RailViewService.railParking()
+    this.railPark = function railPark() {
+      RailViewService.railParking()
       .then(function success(data) {
       console.log('Rail Parking', data);
       })
       .catch(function failed(xhr) {
       console.log('No data for you :(', xhr);
       });
+    };
 
   }
 
@@ -94,6 +103,11 @@
 
   RailViewService.$inject = ['$http'];
 
+  /**
+   * RailViewService Constructor Function that returns all the rail related http calls
+   * @param {Angular} $http Dependency Injection
+   * @return {void}
+   */
   function RailViewService($http) {
     return {
       railInfo: railInfo,
@@ -102,7 +116,7 @@
 
     function railInfo() {
       return $http({
-        url: 'https://api.wmata.com/StationPrediction.svc/json/GetPrediction/B03',
+        url: 'https://api.wmata.com/Incidents.svc/json/Incidents',
         method: 'get',
         headers: {
           'content-type': 'application/json',
