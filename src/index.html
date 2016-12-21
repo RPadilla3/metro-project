@@ -2,26 +2,24 @@
 <html ng-app='transport'>
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css" type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Kumar+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Coda">
     <title>Metro Project</title>
   </head>
   <body>
-    <h1 class='page-header'> Metro Pass <small>A Better Commute!</small> </h1>
+    <header>
+      <h1 class='page-header'> Metro Pass </h1>
+        <nav id='navbar' class='container'>
+          <ul>
+            <li><a ui-sref='home'>Home</a></li>
+            <li><a ui-sref='metro'>Metro</a></li>
+            <li><a ui-sref='login'>Login</a></li>
+          </ul>
+        </nav>
+    <header>
 
-    <nav class='navbar navbar-inverse'>
-      <ul>
-        <li><a ui-sref='home'>Home</a></li>
-        <li><a href='#'>Bus</a></li>
-        <li><a href='#'>Metro</a></li>
-        <li><a href='#'>Login</a></li>
-      </ul>
-    </nav>
-
-    <main ui-view ng-controller='RailViewController as railView'>
-    </main>
-
-    <main id='map' class= 'map'>
+    <main ui-view>
     </main>
 
     <script src='javascript/angular.js'></script>
