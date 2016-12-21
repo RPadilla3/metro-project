@@ -82,7 +82,7 @@ module.exports = function(grunt) {
 
     watch: {
       html: {
-        files: ['src/index.html'],
+        files: ['src/**/*.html'],
         tasks: ['copy:html']
       },
       js: {
