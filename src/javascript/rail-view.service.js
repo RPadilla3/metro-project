@@ -6,6 +6,11 @@
 
   RailViewService.$inject = ['$http'];
 
+  /**
+   * RailViewService Constructor Function that returns all the rail related http calls
+   * @param {Angular} $http Dependency Injection
+   * @return {void}
+   */
   function RailViewService($http) {
     return {
       railInfo: railInfo,
@@ -14,7 +19,7 @@
 
     function railInfo() {
       return $http({
-        url: 'https://api.wmata.com/StationPrediction.svc/json/GetPrediction/B03',
+        url: 'https://api.wmata.com/Incidents.svc/json/Incidents',
         method: 'get',
         headers: {
           'content-type': 'application/json',

@@ -20,8 +20,8 @@
       name: 'metro',
       url: '/metro',
       templateUrl: 'views/metro.template.html',
-      Controller: 'RailViewController',
-      ControllerAs: 'railView'
+      controller: 'RailViewController',
+      controllerAs: 'railView'
     })
     .state({
       name: 'login',
