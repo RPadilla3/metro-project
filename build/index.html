@@ -10,19 +10,16 @@
   <body>
     <header>
       <h1 class='page-header'> Metro Pass </h1>
-        <nav id='navbar' class='container blue circleBehind'>
+        <nav id='navbar' class='container'>
           <ul>
-            <li><a href='#'>Home</a></li>
-            <li><a href='#'>Metro</a></li>
-            <li><a href='#'>Login</a></li>
+            <li><a ui-sref='home'>Home</a></li>
+            <li><a ui-sref='metro'>Metro</a></li>
+            <li><a ui-sref='login'>Login</a></li>
           </ul>
         </nav>
     <header>
 
-    <main ui-view ng-controller='RailViewController as railView'>
-    </main>
-
-    <main id='map' class= 'map'>
+    <main ui-view>
     </main>
 
     <script src='javascript/angular.js'></script>
