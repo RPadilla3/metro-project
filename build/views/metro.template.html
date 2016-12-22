@@ -3,17 +3,22 @@
     <h1>Metro Delays</h1>
     <p>All Rail Delays will be listed below</p>
     <ul>
-      <li></li>
+      <li ng-repeat='delay in railView.railIncident'>
+        <h3>{{delay}}</h3>
+      </li>
     </ul>
+    <button ng-click='railView.railInfo()'>Update</button>
   </section>
   <section class='station-incidents'>
     <h1>Station Incidents</h1>
     <p>All Station Incidents including Elevator/Escalator incidents will be listed below.</p>
     <ul>
-      <li></li>
+      <li ng-repeat='incident in railView.incidents'>
+        {{incident}}
+      </li>
     </ul>
   </section>
-    <button ng-click='railView.railInfo()'>Update</button>
+    <button ng-click='railView.getIncidents()'>Update</button>
   </section>
-  <section mapbox class='main-map'></section>
+  <!-- <section mapbox class='main-map'></section> -->
 </main>

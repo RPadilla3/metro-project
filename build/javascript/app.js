@@ -4,11 +4,13 @@
   angular.module('transport', ['ui.router'])
   .config(viewConfig);
 
-  viewConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
+  viewConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
-  function viewConfig($stateProvider, $urlRouterProvider) {
+  function viewConfig($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $urlRouterProvider.when('', '/');
+    $locationProvider.hashPrefix('');
+
 
     $stateProvider
     .state({
@@ -123,7 +125,7 @@
   'use strict';
 
   angular.module('transport')
-    .controller('RailViewController', RailViewController);
+  .controller('RailViewController', RailViewController);
 
   RailViewController.$inject = ['RailViewService'];
 
@@ -132,24 +134,21 @@
   * @param {[type]} RailViewService [description]
   */
   function RailViewController(RailViewService) {
-    console.log('initializing RailView');
+
+    var vm = this;
+    this.incident = [];
+    this.railIncident = [];
 
     this.railInfo = function railInfo(){
       RailViewService.railInfo()
       .then(function success(data) {
+        vm.railIncident = data;
         console.log('Rail Incidents', data);
       })
       .catch(function failure(xhr) {
         console.log('No data for you :(', xhr);
       });
 
-      RailViewService.stationIncidents()
-      .then(function success(data) {
-        console.log('Station Incidents', data);
-      })
-      .catch(function failure(xhr) {
-        console.log('try again tomorrow buddy', xhr);
-      });
     };
 
     this.railPark = function railPark() {
@@ -161,6 +160,19 @@
         console.log('No data for you :(', xhr);
       });
     };
+
+
+    this.getIncidents = function getIncidents() {
+      RailViewService.stationIncidents()
+      .then(function success(data) {
+        vm.incidents = data;
+        console.log('Station Incidents', data);
+      })
+      .catch(function failure(xhr) {
+        console.log('Failed', xhr);
+      });
+
+    }
 
   }
 
