@@ -16,10 +16,18 @@
     this.railInfo = function railInfo(){
       RailViewService.railInfo()
       .then(function success(data) {
-        console.log('Rail Info', data);
+        console.log('Rail Incidents', data);
       })
       .catch(function failure(xhr) {
         console.log('No data for you :(', xhr);
+      });
+
+      RailViewService.stationIncidents()
+      .then(function success(data) {
+        console.log('Station Incidents', data);
+      })
+      .catch(function failure(xhr) {
+        console.log('try again tomorrow buddy', xhr);
       });
     };
 
@@ -30,16 +38,6 @@
       })
       .catch(function failed(xhr) {
         console.log('No data for you :(', xhr);
-      });
-    };
-
-    this.stationIncident = function stationIncident() {
-      RailViewService.stationIncidents()
-      .then(function success(data) {
-        console.log('you got it', data);
-      })
-      .catch(function failure(xhr) {
-        console.log('try again tomorrow buddy', xhr);
       });
     };
 

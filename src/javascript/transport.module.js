@@ -13,7 +13,7 @@
     $stateProvider
     .state({
       name: 'home',
-      url: '',
+      url: '/',
       templateUrl: 'views/home.template.html'
     })
     .state({
@@ -35,6 +35,13 @@
       controller: 'RailPositionController',
       controllerAs: 'position'
     })
+    .state({
+      name:'commute',
+      url:'/commute',
+      templateUrl: 'views/commute.template.html',
+      controller: 'CommuteController',
+      controllerAs: 'commute'
+    });
 
 
 
