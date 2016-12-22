@@ -13,7 +13,7 @@
    */
   function RailViewService($http) {
 
-    var passKey = 'f44ffd8ba84f459796d5a0870957bdb7'
+    var passKey = 'f44ffd8ba84f459796d5a0870957bdb7';
 
     return {
       railInfo: railInfo,

@@ -15,7 +15,7 @@
       })
       .catch(function failed(xhr) {
         console.log('no live trains for you :(', xhr);
-      })
+      });
     };
 
   }
