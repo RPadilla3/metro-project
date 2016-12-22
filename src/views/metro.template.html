@@ -1,18 +1,20 @@
 <main id='forms'>
-  <section class='alerts'>
-    <h1>Alerts</h1>
-    <p>All Station Alerts will be listed below</p>
-    <ul>
-      <li ng-repeat='info in railInfo '></li>
-    </ul>
-  </section>
   <section class='delays'>
     <h1>Delays</h1>
     <p>All Rail Delays will be listed below</p>
     <ul>
       <li></li>
     </ul>
+    <button ng-click='railView.railInfo()'>Update</button>
   </section>
-  <button ng-click='railView.railInfo()'>Update</button>
+  <section class='incidents'>
+    <h1>Station Incidents</h1>
+    <p>All Station Incidents including Elevator/Escalator incidents will be posted below.</p>
+    <ul>
+      <li></li>
+    </ul>
+    <button ng-click='railView.stationIncident()'>Update</button>
+  </section>
+
   <section mapbox class='main-map'></section>
 </main>
