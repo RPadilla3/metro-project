@@ -47,4 +47,10 @@ body {
   display: inline-block;
   float: left; }
 
+.metro-map {
+  height: 35%;
+  width: 40%;
+  margin: auto;
+  border-radius: 2%; }
+
 /*# sourceMappingURL=styles.css.map */

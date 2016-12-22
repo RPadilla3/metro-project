@@ -34,16 +34,7 @@
       templateUrl: 'views/rail-position.template.html',
       controller: 'RailPositionController',
       controllerAs: 'position'
-    })
-    .state({
-      name:'commute',
-      url:'/commute',
-      templateUrl: 'views/commute.template.html',
-      controller: 'CommuteController',
-      controllerAs: 'commute'
     });
-
-
 
   }
 
@@ -86,7 +77,7 @@
       })
       .catch(function failed(xhr) {
         console.log('no live trains for you :(', xhr);
-      })
+      });
     };
 
   }
@@ -191,7 +182,7 @@
    */
   function RailViewService($http) {
 
-    var passKey = 'f44ffd8ba84f459796d5a0870957bdb7'
+    var passKey = 'f44ffd8ba84f459796d5a0870957bdb7';
 
     return {
       railInfo: railInfo,
