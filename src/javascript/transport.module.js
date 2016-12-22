@@ -27,7 +27,15 @@
       name: 'login',
       url: '/login',
       templateUrl: 'views/login.template.html'
-    });
+    })
+    .state({
+      name:'positions',
+      url:'/positions',
+      templateUrl: 'views/rail-position.template.html',
+      controller: 'RailPositionController',
+      controllerAs: 'position'
+    })
+
 
 
   }
