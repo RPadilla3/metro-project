@@ -65,6 +65,41 @@ module.exports = function(grunt) {
       }
     },
 
+    karma: {
+      options: {
+        frameworks: ['mocha', 'chai'],
+        client: {
+          mocha: {
+            ui: 'bdd'
+          }
+        },
+        browsers: [ 'PhantomJS' ],
+        singleRun: true,
+
+        preprocessors: {
+          'src/javascript/**/*.js': [ 'coverage' ]
+        },
+        reporters: [ 'dots', 'coverage' ],
+        coverageReporter: {
+          type: 'text-summary'
+        }
+      },
+      view: {
+        options: {
+          files: [
+            'node_modules/angular/angular.js',
+            'node_modules/angular-ui-router/release/angular-ui-router.js',
+            'node_modules/angular-mocks/angular-mocks.js',
+            'src/javascript/transport.module.js',
+            'src/javascript/rail-view.controller.js',
+            'src/javascript/rail-view.service.js',
+            'test/specs/rail-view.controller.spec.js',
+            'test/specs/rail-view.service.spec.js'
+          ]
+        }
+      }
+    },
+
     concat: {
       javascript: {
         src: ['src/javascript/transport.module.js','src/javascript/**/*.js'],
@@ -89,6 +124,10 @@ module.exports = function(grunt) {
         files: ['src/javascript/**/*.js'],
         tasks: ['concat']
       },
+      test: {
+        files: ['test/specs/**/*.js'],
+        tasks: ['test']
+      },
       sass: {
         files: ['src/sass/**/*.scss'],
         tasks: ['sass']
@@ -108,7 +147,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-karma');
 
+  grunt.registerTask('test', ['karma']);
   grunt.registerTask('default', ['clean', 'sass',  'copy', 'concat']);
 
 };
