@@ -4,11 +4,13 @@
   angular.module('transport', ['ui.router'])
   .config(viewConfig);
 
-  viewConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
+  viewConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
-  function viewConfig($stateProvider, $urlRouterProvider) {
+  function viewConfig($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $urlRouterProvider.when('', '/');
+    $locationProvider.hashPrefix('');
+
 
     $stateProvider
     .state({
