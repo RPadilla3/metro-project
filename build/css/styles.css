@@ -37,10 +37,9 @@ body {
 #login-form {
   text-align: center; }
 
-.main-map {
-  height: 400px;
+#map {
   width: 400px;
-  margin-left: 33%; }
+  height: 300px; }
 
 #forms {
   margin-left: 10%;

@@ -43,22 +43,82 @@
 }());
 
 (function() {
- 'use strict';
+  'use strict';
 
- angular.module('transport')
-   .directive('mapbox', MapBox);
+  angular.module('transport')
+    .factory('MapDetailService', MapDetailService);
+
+  MapDetailService.$inject = ['$http'];
+
+  function MapDetailService($http) {
+
+    return {
+      getStations: getStations
+    };
+
+  function getStations(){
+
+    var metroData;
+
+    return $http({
+      url: 'http://opendata.dc.gov/datasets/ab5661e1a4d74a338ee51cd9533ac787_50.geojson',
+      method: 'get'
+    })
+    .then(function returnedData(data) {
+      metroData = data.data;
+      console.log('Metro station lat,lon', metroData);
+
+      return data.data
+
+    })
+  }
+}
 
 
-   function MapBox() {
-     return {
-       restrict: 'EA',
-       link: function (scope, element) {
-         L.mapbox.accessToken = 'pk.eyJ1IjoicnBhZGlsbGEzIiwiYSI6ImNpd3hrZjF4MTAwN20ydW82ODNyOHp3Z2UifQ.ATqkcRlunPfsvsS5SGFM6Q';
-         L.mapbox.map(element[0], 'mapbox.streets')
-           .setView([38.9072, -77.0369], 13.2);
-       }
-     };
-   }
+}());
+
+(function() {
+  'use strict';
+
+  angular.module('transport')
+  .directive('mapbox', MapBox);
+
+
+  function MapBox() {
+    return {
+      restrict: 'EA',
+      link: function (scope, element) {
+        var map = L.mapbox.map('map')
+        L.mapbox.accessToken = 'pk.eyJ1IjoicnBhZGlsbGEzIiwiYSI6ImNpd3hrZjF4MTAwN20ydW82ODNyOHp3Z2UifQ.ATqkcRlunPfsvsS5SGFM6Q';
+        L.mapbox.map(element[0], 'mapbox.streets')
+        .setView([38.9072, -77.0369], 13.2)
+        .addLayer(L.mapbox.tileLayer('mapbox.streets'));
+        L.mapbox.featureLayer()
+        .loadURL('views/metro-stations.geojson')
+        .on('ready', function(e) {          function makeGroup(color) {
+          return new L.MarkerClusterGroup({
+            iconCreateFunction: function(cluster) {
+              return new L.DivIcon({
+                iconSize: [20, 20],
+                html: '<div style="text-align:center;color:#fff;background:' +
+                color + '">' + cluster.getChildCount() + '</div>'
+              });
+            }
+          }).addTo(map);
+        } var groups = {
+              red:    makeGroup('red'),
+              green:  makeGroup('green'),
+              orange: makeGroup('orange'),
+              blue:   makeGroup('blue'),
+              yellow: makeGroup('yellow')
+          };
+        e.target.eachLayer(function(layer) {
+          groups[layer.feature.properties.line].addLayer(layer);
+        });
+      });
+    }
+  };
+}
 
 }());
 
@@ -127,23 +187,25 @@
   angular.module('transport')
   .controller('RailViewController', RailViewController);
 
-  RailViewController.$inject = ['RailViewService'];
+  RailViewController.$inject = ['RailViewService', 'MapDetailService'];
 
   /**
   * [RailViewController description]
   * @param {[type]} RailViewService [description]
   */
-  function RailViewController(RailViewService) {
+  function RailViewController(RailViewService, MapDetailService) {
 
     var vm = this;
-    this.incident = [];
+    this.incidents = [];
     this.railIncident = [];
 
     this.railInfo = function railInfo(){
       RailViewService.railInfo()
       .then(function success(data) {
-        vm.railIncident = data;
-        console.log('Rail Incidents', data);
+        var data = data;
+        vm.railIncident = data.data.Incidents;
+
+        console.log('Rail Incidents', data.data.Incidents);
       })
       .catch(function failure(xhr) {
         console.log('No data for you :(', xhr);
@@ -165,14 +227,16 @@
     this.getIncidents = function getIncidents() {
       RailViewService.stationIncidents()
       .then(function success(data) {
-        vm.incidents = data;
-        console.log('Station Incidents', data);
+        vm.incidents = data.data.ElevatorIncidents;
+        console.log('Station Incidents', data.data);
       })
       .catch(function failure(xhr) {
         console.log('Failed', xhr);
       });
 
     }
+
+
 
   }
 
