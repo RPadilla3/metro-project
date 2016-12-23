@@ -18,7 +18,8 @@
     return {
       railInfo: railInfo,
       railParking: railParking,
-      stationIncidents: stationIncidents
+      stationIncidents: stationIncidents,
+      stationDistance: stationDistance
 
     };
 
@@ -47,6 +48,17 @@
     function stationIncidents() {
       return $http({
         url: 'https://api.wmata.com/Incidents.svc/json/ElevatorIncidents',
+        method: 'get',
+        headers: {
+          'content-type':'application/json',
+          'api_key': passKey
+        }
+      });
+    }
+
+    function stationDistance() {
+      return $http({
+        url:'https://api.wmata.com/Rail.svc/json/jSrcStationToDstStationInfo?FromStationCode=E08&ToStationCode=E10',
         method: 'get',
         headers: {
           'content-type':'application/json',

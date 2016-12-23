@@ -16,39 +16,40 @@
     this.incidents = [];
     this.railIncident = [];
     this.railParking = [];
+    this.distances = [];
 
-    // this.redlineCodes = {
-    //   'A15':'shadygrove',
-    //   'A14':'rockville',
-    //   'A13':'twinbrook',
-    //   'A12':'whiteflint',
-    //   'A11':'grosvenorstrathmore',
-    //   'A10':'medicalcenter',
-    //   'A09':'bethesda',
-    //   'A08':'friendshipheights',
-    //   'A07':'tenleytown',
-    //   'A06':'vannessudc',
-    //   'A05':'clevelandpark',
-    //   'A04':'woodleypark',
-    //   'A03':'dupontcircle',
-    //   'A02':'farragutnorth',
-    //   'A01':'metrocenter',
-    //   'B01':'galleryplace',
-    //   'B02':'judiciarysquare',
-    //   'B03':'unionstation',
-    //   'B35':'noma',
-    //   'B04':'rhodeislandavenue',
-    //   'B05':'brookland',
-    //   'B06':'fortotten',
-    //   'B07':'takoma',
-    //   'B08':'silverspring',
-    //   'B09':'forestglen',
-    //   'B10':'wheaton',
-    //   'B11':'glenmont'
-    // };
-    //
-    // var redlineCodes = redlineCodes
-    // console.log(this.redlineCodes);
+    this.redlineCodes = {
+      'A15':'shadygrove',
+      'A14':'rockville',
+      'A13':'twinbrook',
+      'A12':'whiteflint',
+      'A11':'grosvenorstrathmore',
+      'A10':'medicalcenter',
+      'A09':'bethesda',
+      'A08':'friendshipheights',
+      'A07':'tenleytown',
+      'A06':'vannessudc',
+      'A05':'clevelandpark',
+      'A04':'woodleypark',
+      'A03':'dupontcircle',
+      'A02':'farragutnorth',
+      'A01':'metrocenter',
+      'B01':'galleryplace',
+      'B02':'judiciarysquare',
+      'B03':'unionstation',
+      'B35':'noma',
+      'B04':'rhodeislandavenue',
+      'B05':'brookland',
+      'B06':'fortotten',
+      'B07':'takoma',
+      'B08':'silverspring',
+      'B09':'forestglen',
+      'B10':'wheaton',
+      'B11':'glenmont'
+    };
+
+    var redlineCodes = redlineCodes;
+    console.log(this.redlineCodes);
 
     this.railInfo = function railInfo(){
       RailViewService.railInfo()
@@ -83,6 +84,17 @@
         console.log('Failed', xhr);
       });
 
+    }
+
+    this.distance = function distance() {
+      RailViewService.stationDistance()
+      .then(function success(data) {
+        vm.distances = data.data.CompositeMiles;
+        console.log('ayy', data);
+      })
+      .catch(function failed(xhr) {
+        console.log(xhr);
+      });
     }
 
 
