@@ -19,7 +19,9 @@
     this.railInfo = function railInfo(){
       RailViewService.railInfo()
       .then(function success(data) {
+        var data = data;
         vm.railIncident = data;
+        console.log(railIncident);
         console.log('Rail Incidents', data);
       })
       .catch(function failure(xhr) {
