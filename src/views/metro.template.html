@@ -4,7 +4,8 @@
     <p>All Rail Delays will be listed below</p>
     <ul>
       <li ng-repeat='delay in railView.railIncident'>
-        {{delay.data.Incidents.Description}}
+        <h4>Description: {{delay.Description}}</h4>
+        <p>Lines Affected: {{delay.LinesAffected}}</p>
       </li>
     </ul>
     <button ng-click='railView.railInfo()'>Update</button>
@@ -14,11 +15,14 @@
     <p>All Station Incidents including Elevator/Escalator incidents will be listed below.</p>
     <ul>
       <li ng-repeat='incident in railView.incidents'>
-        {{incident.data.ElevatorIncidents[0].LocationDescription}}
+        <h4>Station: {{incident.StationName}}</h4>
+        <p>Description: {{incident.LocationDescription}}</p>
+        <p>Cause: {{incident.SymptomDescription}}</p>
       </li>
     </ul>
   </section>
     <button ng-click='railView.getIncidents()'>Update</button>
   </section>
-  <section mapbox class='main-map'></section>
+  <!-- <section mapbox class='main-map'></section>
+  <section id='map'></section> -->
 </main>

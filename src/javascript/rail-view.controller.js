@@ -4,25 +4,25 @@
   angular.module('transport')
   .controller('RailViewController', RailViewController);
 
-  RailViewController.$inject = ['RailViewService'];
+  RailViewController.$inject = ['RailViewService', 'MapDetailService'];
 
   /**
   * [RailViewController description]
   * @param {[type]} RailViewService [description]
   */
-  function RailViewController(RailViewService) {
+  function RailViewController(RailViewService, MapDetailService) {
 
     var vm = this;
-    this.incident = [];
+    this.incidents = [];
     this.railIncident = [];
 
     this.railInfo = function railInfo(){
       RailViewService.railInfo()
       .then(function success(data) {
         var data = data;
-        vm.railIncident = data;
-        console.log(railIncident);
-        console.log('Rail Incidents', data);
+        vm.railIncident = data.data.Incidents;
+
+        console.log('Rail Incidents', data.data.Incidents);
       })
       .catch(function failure(xhr) {
         console.log('No data for you :(', xhr);
@@ -44,14 +44,16 @@
     this.getIncidents = function getIncidents() {
       RailViewService.stationIncidents()
       .then(function success(data) {
-        vm.incidents = data;
-        console.log('Station Incidents', data);
+        vm.incidents = data.data.ElevatorIncidents;
+        console.log('Station Incidents', data.data);
       })
       .catch(function failure(xhr) {
         console.log('Failed', xhr);
       });
 
     }
+
+
 
   }
 
