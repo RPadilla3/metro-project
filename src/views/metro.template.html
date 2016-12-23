@@ -1,18 +1,15 @@
 <main id='forms'>
   <section class='metro-delays'>
     <h1>Metro Delays</h1>
-    <p>All Rail Delays will be listed below</p>
     <ul>
       <li ng-repeat='delay in railView.railIncident'>
-        <h4>Description: {{delay.Description}}</h4>
-        <p>Lines Affected: {{delay.LinesAffected}}</p>
+        <p>{{delay.Description}}</p>
       </li>
     </ul>
     <button ng-click='railView.railInfo()'>Update</button>
   </section>
   <section class='station-incidents'>
     <h1>Station Incidents</h1>
-    <p>All Station Incidents including Elevator/Escalator incidents will be listed below.</p>
     <ul>
       <li ng-repeat='incident in railView.incidents'>
         <h4>Station: {{incident.StationName}}</h4>
@@ -22,6 +19,16 @@
     </ul>
   </section>
     <button ng-click='railView.getIncidents()'>Update</button>
+  </section>
+  <section>
+    <h1>Station Parking Info</h1>
+  <ul>
+      <li ng-repeat='parking in railView.railParking'>
+        <h3>Station Code: {{parking.Code}}</h3>
+        <p>Short Term {{parking.ShortTermParking.Notes}}</p>
+      </li>
+  </ul>
+  <button ng-click='railView.railPark()'>Update</button>
   </section>
   <!-- <section mapbox class='main-map'></section>
   <section id='map'></section> -->

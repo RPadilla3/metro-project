@@ -35,7 +35,7 @@
 
     function railParking() {
       return $http({
-        url:'https://api.wmata.com/Rail.svc/json/jStationParking?StationCode=E08',
+        url:'https://api.wmata.com/Rail.svc/json/jStationParking',
         method:'get',
         headers: {
           'content-type': 'application/json',
