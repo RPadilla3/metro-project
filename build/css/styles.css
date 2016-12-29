@@ -34,9 +34,6 @@ body {
   margin: 0;
   background-color: #544a3a; }
 
-#login-form {
-  text-align: center; }
-
 #map {
   width: 400px;
   height: 300px; }

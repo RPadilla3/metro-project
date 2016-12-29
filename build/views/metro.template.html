@@ -32,18 +32,19 @@
   </section>
   <!-- <section mapbox class='main-map'></section>
   <section id='map'></section> -->
+  <button ng-click='railView.positions()'>Red Line positions</button>
 
   <section>
     <h1>Station Distances</h1>
     <form>
       <label for='start'>Start Station:</label>
-      <input type='text' id='start' required></br>
+      <input type='text' id='start' ng-model='railView.stationNames' required></br>
       <label for='destination'>Destination:</label>
-      <input type='text' id='destination' required>
+      <input type='text' id='destination' ng-model='railView.stationNames' required>
     </form>
     <ul>
-      <li ng-repeat='distance in railView.distance'>
-        <h3>{{distance}}</h3>
+      <li ng-repeat='distance in railView.distances'>
+        <h3>{{distance.CompositeMiles}}</h3>
       </li>
     </ul>
     <button ng-click='railView.distance()'>Get Distance</button>

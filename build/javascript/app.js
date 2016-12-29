@@ -26,11 +26,6 @@
       controllerAs: 'railView'
     })
     .state({
-      name: 'login',
-      url: '/login',
-      templateUrl: 'views/login.template.html'
-    })
-    .state({
       name:'positions',
       url:'/positions',
       templateUrl: 'views/rail-position.template.html',
@@ -100,7 +95,7 @@
             iconCreateFunction: function(cluster) {
               return new L.DivIcon({
                 iconSize: [20, 20],
-                html: '<div style="text-align:center;color:#fff;background:' +
+                html: '<div style="text-align:center;color:#ffffff;background:' +
                 color + '">' + cluster.getChildCount() + '</div>'
               });
             }
@@ -200,6 +195,8 @@
     this.railIncident = [];
     this.railParking = [];
     this.distances = [];
+    this.position = [];
+    this.stationNames = {};
 
     this.redlineCodes = {
       'A15':'shadygrove',
@@ -223,22 +220,22 @@
       'B35':'noma',
       'B04':'rhodeislandavenue',
       'B05':'brookland',
-      'B06':'fortotten',
+      'B06':'forttotten',
       'B07':'takoma',
       'B08':'silverspring',
       'B09':'forestglen',
       'B10':'wheaton',
       'B11':'glenmont'
     };
-
     var redlineCodes = redlineCodes;
-    console.log(this.redlineCodes);
+      console.log(this.redlineCodes);
 
     this.railInfo = function railInfo(){
       RailViewService.railInfo()
       .then(function success(data) {
         var data = data;
         vm.railIncident = data.data.Incidents;
+        console.log('success', data.data.Incidents);
       })
       .catch(function failure(xhr) {
         console.log('No data for you :(', xhr);
@@ -262,6 +259,7 @@
       RailViewService.stationIncidents()
       .then(function success(data) {
         vm.incidents = data.data.ElevatorIncidents;
+        console.log('You got it!', data.data.ElevatorIncidents);
       })
       .catch(function failure(xhr) {
         console.log('Failed', xhr);
@@ -272,12 +270,23 @@
     this.distance = function distance() {
       RailViewService.stationDistance()
       .then(function success(data) {
-        vm.distances = data.data.CompositeMiles;
-        console.log('ayy', data);
+        vm.distances = data.data;
+        console.log('Miles to Destination', data.data);
       })
       .catch(function failed(xhr) {
         console.log(xhr);
       });
+    }
+
+    this.positions = function positions() {
+      RailViewService.stationPositions()
+      .then(function aye(data) {
+        vm.position = data.data;
+        console.log('Red line positions', data.data);
+      })
+      .catch(function nah(xhr) {
+        console.log(xhr);
+      })
     }
 
 
@@ -308,8 +317,8 @@
       railInfo: railInfo,
       railParking: railParking,
       stationIncidents: stationIncidents,
-      stationDistance: stationDistance
-
+      stationDistance: stationDistance,
+      stationPositions: stationPositions
     };
 
     function railInfo() {
@@ -345,12 +354,24 @@
       });
     }
 
-    function stationDistance() {
+    function stationDistance(stationNames) {
       return $http({
-        url:'https://api.wmata.com/Rail.svc/json/jSrcStationToDstStationInfo?FromStationCode=E08&ToStationCode=E10',
+        url:'https://api.wmata.com/Rail.svc/json/jSrcStationToDstStationInfo?FromStationCode='
+        + stationNames + '&ToStationCode=' + stationNames,
         method: 'get',
         headers: {
           'content-type':'application/json',
+          'api_key': passKey
+        }
+      });
+    }
+
+    function stationPositions() {
+      return $http({
+        url: 'https://api.wmata.com/Rail.svc/json/jStations?LineCode=RD',
+        method: 'get',
+        headers: {
+          'content-type': 'application/json',
           'api_key': passKey
         }
       });
