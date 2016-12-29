@@ -6,7 +6,7 @@
         <p>{{delay.Description}}</p>
       </li>
     </ul>
-    <button ng-click='railView.railInfo()'>Update</button>
+    <button ng-click='railView.railInfo()'>Get Info</button>
   </section>
   <section class='station-incidents'>
     <h1>Station Incidents</h1>
@@ -18,7 +18,7 @@
       </li>
     </ul>
   </section>
-    <button ng-click='railView.getIncidents()'>Update</button>
+    <button ng-click='railView.getIncidents()'>Get Info</button>
   </section>
   <section>
     <h1>Station Parking Info</h1>
@@ -28,8 +28,25 @@
         <p>Short Term {{parking.ShortTermParking.Notes}}</p>
       </li>
   </ul>
-  <button ng-click='railView.railPark()'>Update</button>
+  <button ng-click='railView.railPark()'>Get Info</button>
   </section>
   <!-- <section mapbox class='main-map'></section>
   <section id='map'></section> -->
+  <button ng-click='railView.positions()'>Red Line positions</button>
+
+  <section>
+    <h1>Station Distances</h1>
+    <form>
+      <label for='start'>Start Station:</label>
+      <input type='text' id='start' ng-model='railView.stationNames' required></br>
+      <label for='destination'>Destination:</label>
+      <input type='text' id='destination' ng-model='railView.stationNames' required>
+    </form>
+    <ul>
+      <li ng-repeat='distance in railView.distances'>
+        <h3>{{distance.CompositeMiles}}</h3>
+      </li>
+    </ul>
+    <button ng-click='railView.distance()'>Get Distance</button>
+  </section>
 </main>

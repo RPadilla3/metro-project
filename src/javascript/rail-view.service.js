@@ -19,8 +19,8 @@
       railInfo: railInfo,
       railParking: railParking,
       stationIncidents: stationIncidents,
-      stationDistance: stationDistance
-
+      stationDistance: stationDistance,
+      stationPositions: stationPositions
     };
 
     function railInfo() {
@@ -56,12 +56,24 @@
       });
     }
 
-    function stationDistance() {
+    function stationDistance(stationNames) {
       return $http({
-        url:'https://api.wmata.com/Rail.svc/json/jSrcStationToDstStationInfo?FromStationCode=E08&ToStationCode=E10',
+        url:'https://api.wmata.com/Rail.svc/json/jSrcStationToDstStationInfo?FromStationCode='
+        + stationNames + '&ToStationCode=' + stationNames,
         method: 'get',
         headers: {
           'content-type':'application/json',
+          'api_key': passKey
+        }
+      });
+    }
+
+    function stationPositions() {
+      return $http({
+        url: 'https://api.wmata.com/Rail.svc/json/jStations?LineCode=RD',
+        method: 'get',
+        headers: {
+          'content-type': 'application/json',
           'api_key': passKey
         }
       });
