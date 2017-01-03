@@ -196,7 +196,6 @@
     this.railParking = [];
     this.distances = [];
     this.position = [];
-    this.stationNames = {};
 
     this.redlineCodes = {
       'A15':'shadygrove',

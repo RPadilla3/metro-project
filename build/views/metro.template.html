@@ -1,8 +1,8 @@
 <main id='forms'>
   <section class='metro-delays'>
     <h1>Metro Delays</h1>
-    <ul>
-      <li ng-repeat='delay in railView.railIncident'>
+    <ul class='delay-styles'>
+      <li ng-repeat='delay in railView.railIncident' class='styles'>
         <p>{{delay.Description}}</p>
       </li>
     </ul>
@@ -11,7 +11,7 @@
   <section class='station-incidents'>
     <h1>Station Incidents</h1>
     <ul>
-      <li ng-repeat='incident in railView.incidents'>
+      <li ng-repeat='incident in railView.incidents' class='styles'>
         <h4>Station: {{incident.StationName}}</h4>
         <p>Description: {{incident.LocationDescription}}</p>
         <p>Cause: {{incident.SymptomDescription}}</p>
@@ -23,7 +23,7 @@
   <section>
     <h1>Station Parking Info</h1>
   <ul>
-      <li ng-repeat='parking in railView.railParking'>
+      <li ng-repeat='parking in railView.railParking' class='styles'>
         <h3>Station Code: {{parking.Code}}</h3>
         <p>Short Term {{parking.ShortTermParking.Notes}}</p>
       </li>
@@ -38,12 +38,12 @@
     <h1>Station Distances</h1>
     <form>
       <label for='start'>Start Station:</label>
-      <input type='text' id='start' ng-model='railView.stationNames' required></br>
+      <input type='text' id='start' ng-model='railView.position' required></br>
       <label for='destination'>Destination:</label>
-      <input type='text' id='destination' ng-model='railView.stationNames' required>
+      <input type='text' id='destination' ng-model='railView.position' required>
     </form>
     <ul>
-      <li ng-repeat='distance in railView.distances'>
+      <li ng-repeat='distance in railView.distances' class='styles'>
         <h3>{{distance.CompositeMiles}}</h3>
       </li>
     </ul>
