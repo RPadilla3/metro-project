@@ -1,16 +1,4 @@
 <main id='forms'>
-  <section>
-    <h1>Station Distances</h1>
-    <form>
-      <label for='start'>Start Station:</label>
-      <input type='text' id='start' ng-model='railView.distance.start' required></br>
-      <label for='destination'>Destination:</label>
-      <input type='text' id='destination' ng-model='railView.distance.end' required>
-    </form>
-    {{railView.stationToStationInfo}}
-    <button ng-click='railView.getStationToStation()'>Get Distance</button>
-  </section>
-
   <section class='metro-delays'>
     <h1>Metro Delays</h1>
     <ul class='delay-styles'>

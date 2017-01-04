@@ -1,5 +1,18 @@
 <main id='home-page'>
 <h1> Welcome to Metro Pass </h1>
 <p>An easy to use D.C Metro app to make your commute that much easier!</p>
-<img class='metro-map' src='images/metromap.png'>
 </main>
+<section>
+  <h1>Station Distances</h1>
+  <form>
+    <label for='start'>Start Station:</label>
+    <input type='text' id='start' ng-model='railView.distance.start' required></br>
+    <label for='destination'>Destination:</label>
+    <input type='text' id='destination' ng-model='railView.distance.end' required>
+  </form>
+  <h2>Miles: {{railView.stationToStationInfo.CompositeMiles}}</h2>
+  <h2>RailTime: {{railView.stationToStationInfo.RailTime}}</h2>
+    <h3>Peak time: ${{railView.stationToStationInfo.RailFare.PeakTime}}</h3>
+
+  <button ng-click='railView.getStationToStation()'>Get Distance</button>
+</section>
