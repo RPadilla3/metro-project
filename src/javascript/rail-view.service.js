@@ -56,11 +56,14 @@
       });
     }
 
-    function stationDistance(stationNames) {
+    function stationDistance() {
       return $http({
-        url:'https://api.wmata.com/Rail.svc/json/jSrcStationToDstStationInfo?FromStationCode='
-        + stationNames + '&ToStationCode=' + stationNames,
+        url:'https://api.wmata.com/Rail.svc/json/jSrcStationToDstStationInfo',
         method: 'get',
+        params: {
+          FromStationCode: position.start,
+          ToStationCode: position.end
+        },
         headers: {
           'content-type':'application/json',
           'api_key': passKey

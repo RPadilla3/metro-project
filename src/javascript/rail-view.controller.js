@@ -16,9 +16,9 @@
     this.incidents = [];
     this.railIncident = [];
     this.railParking = [];
-    this.distances = [];
+    this.distances = {};
     this.position = [];
-    this.stationNames = {};
+    vm.message = undefined;
 
     this.redlineCodes = {
       'A15':'shadygrove',
@@ -49,6 +49,7 @@
       'B10':'wheaton',
       'B11':'glenmont'
     };
+
     var redlineCodes = redlineCodes;
       console.log(this.redlineCodes);
 
@@ -60,7 +61,7 @@
         console.log('success', data.data.Incidents);
       })
       .catch(function failure(xhr) {
-        console.log('No data for you :(', xhr);
+        console.error('No data for you :(', xhr);
       });
 
     };
@@ -72,7 +73,7 @@
         console.log('Rail Parking', data.data);
       })
       .catch(function failed(xhr) {
-        console.log('No data for you :(', xhr);
+        console.error('No data for you :(', xhr);
       });
     };
 
@@ -87,7 +88,7 @@
         console.log('Failed', xhr);
       });
 
-    }
+    };
 
     this.distance = function distance() {
       RailViewService.stationDistance()
@@ -98,18 +99,18 @@
       .catch(function failed(xhr) {
         console.log(xhr);
       });
-    }
+    };
 
     this.positions = function positions() {
       RailViewService.stationPositions()
-      .then(function aye(data) {
+      .then(function successful(data) {
         vm.position = data.data;
         console.log('Red line positions', data.data);
       })
-      .catch(function nah(xhr) {
+      .catch(function failure(xhr) {
         console.log(xhr);
-      })
-    }
+      });
+    };
 
 
 
