@@ -8,10 +8,11 @@
     </ul>
     <button ng-click='railView.railInfo()'>Get Info</button>
   </section>
+
   <section class='station-incidents'>
     <h1>Station Incidents</h1>
-    <ul>
-      <li ng-repeat='incident in railView.incidents' class='styles'>
+    <ul class='delay-styles'>
+      <li ng-repeat='incident in railView.incidents | limitTo: 5' class='styles'>
         <h4>Station: {{incident.StationName}}</h4>
         <p>Description: {{incident.LocationDescription}}</p>
         <p>Cause: {{incident.SymptomDescription}}</p>
@@ -20,10 +21,11 @@
   </section>
     <button ng-click='railView.getIncidents()'>Get Info</button>
   </section>
+
   <section>
     <h1>Station Parking Info</h1>
-  <ul>
-      <li ng-repeat='parking in railView.railParking' class='styles'>
+  <ul class='delay-styles'>
+      <li ng-repeat='parking in railView.railParking | limitTo: 5' class='styles'>
         <h3>Station Code: {{parking.Code}}</h3>
         <p>Short Term {{parking.ShortTermParking.Notes}}</p>
       </li>
@@ -32,7 +34,6 @@
   </section>
   <!-- <section mapbox class='main-map'></section>
   <section id='map'></section> -->
-  <button ng-click='railView.positions()'>Red Line positions</button>
 
   <section>
     <h1>Station Distances</h1>
