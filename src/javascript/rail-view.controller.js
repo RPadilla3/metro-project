@@ -16,7 +16,8 @@
     this.incidents = [];
     this.railIncident = [];
     this.railParking = [];
-    this.distances = {};
+    this.distance = {};
+    this.stationToStationInfo;
     this.position = [];
     vm.message = undefined;
 
@@ -90,10 +91,10 @@
 
     };
 
-    this.distance = function distance() {
-      RailViewService.stationDistance()
+    this.getStationToStation = function getStationToStation() {
+      RailViewService.stationDistance(vm.distance)
       .then(function success(data) {
-        vm.distances = data.data;
+        vm.stationToStationInfo = data.data.StationToStationInfos[0];
         console.log('Miles to Destination', data.data);
       })
       .catch(function failed(xhr) {
