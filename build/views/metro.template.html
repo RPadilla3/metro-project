@@ -3,7 +3,7 @@
     <h1>Metro Delays</h1>
     <ul class='delay-styles'>
       <li ng-repeat='delay in railView.railIncident' class='styles'>
-        <p>{{delay.Description}}</p>
+        <p class='glyphicon glyphicon-alert'>  {{delay.Description}}</p>
       </li>
     </ul>
     <button ng-click='railView.railInfo()'>Get Info</button>
@@ -35,19 +35,5 @@
   <!-- <section mapbox class='main-map'></section>
   <section id='map'></section> -->
 
-  <section>
-    <h1>Station Distances</h1>
-    <form>
-      <label for='start'>Start Station:</label>
-      <input type='text' id='start' ng-model='railView.position' required></br>
-      <label for='destination'>Destination:</label>
-      <input type='text' id='destination' ng-model='railView.position' required>
-    </form>
-    <ul>
-      <li ng-repeat='distance in railView.distances' class='styles'>
-        <h3>{{distance.CompositeMiles}}</h3>
-      </li>
-    </ul>
-    <button ng-click='railView.distance()'>Get Distance</button>
-  </section>
+
 </main>

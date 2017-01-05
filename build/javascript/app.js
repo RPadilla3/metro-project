@@ -16,7 +16,9 @@
     .state({
       name: 'home',
       url: '/',
-      templateUrl: 'views/home.template.html'
+      templateUrl: 'views/home.template.html',
+      controller: 'RailViewController',
+      controllerAs: 'railView'
     })
     .state({
       name: 'metro',
@@ -38,7 +40,7 @@
       templateUrl: 'views/login.template.html',
       controller: 'loginController',
       controlelrAs: 'login'
-    })
+    });
 
   }
 
@@ -195,53 +197,137 @@
   * [RailViewController description]
   * @param {[type]} RailViewService [description]
   */
-  function RailViewController(RailViewService, MapDetailService) {
+  function RailViewController(RailViewService) {
 
     var vm = this;
     this.incidents = [];
     this.railIncident = [];
     this.railParking = [];
-    this.distances = [];
+    this.distance = {};
     this.position = [];
-    vm.message = undefined;
+    this.stationNames = {};
 
-    this.redlineCodes = {
-      'A15':'shadygrove',
-      'A14':'rockville',
-      'A13':'twinbrook',
-      'A12':'whiteflint',
-      'A11':'grosvenorstrathmore',
-      'A10':'medicalcenter',
-      'A09':'bethesda',
-      'A08':'friendshipheights',
-      'A07':'tenleytown',
-      'A06':'vannessudc',
-      'A05':'clevelandpark',
-      'A04':'woodleypark',
-      'A03':'dupontcircle',
-      'A02':'farragutnorth',
-      'A01':'metrocenter',
-      'B01':'galleryplace',
-      'B02':'judiciarysquare',
-      'B03':'unionstation',
-      'B35':'noma',
-      'B04':'rhodeislandavenue',
-      'B05':'brookland',
-      'B06':'forttotten',
-      'B07':'takoma',
-      'B08':'silverspring',
-      'B09':'forestglen',
-      'B10':'wheaton',
-      'B11':'glenmont'
+    // Red line,
+    // silver line,
+    // orange line,
+    // blue line,
+    // yellow line,
+    // green line
+
+    this.metroLineCodes = {
+      'Shady Grove':'A15',
+      'Rockville':'A14',
+      'Twinbrook':'A13',
+      'White Flint':'A12',
+      'Grosvenor Strathmore':'A11',
+      'Medical Center':'A10',
+      'Bethesda':'A09',
+      'Friendship Heights':'A08',
+      'Tenleytown':'A07',
+      'Van Ness UDC':'A06',
+      'Cleveland Park':'A05',
+      'Woodley Park':'A04',
+      'Dupont Circle':'A03',
+      'Farragut North':'A02',
+      'Metro Center':'A01',
+      'Gallery Place China Town':'B01',
+      'Judiciary Square':'B02',
+      'Union Station':'B03',
+      'Noma':'B35',
+      'Rhode Island Avenue':'B04',
+      'Brookland':'B05',
+      'Fort Totten':'B06',
+      'Takoma':'B07',
+      'Silver Spring':'B08',
+      'Forest Glen':'B09',
+      'Wheaton':'B10',
+      'Glenmont':'B11',
+      'Vienna':'K08',
+      'Dunn Loring':'K07',
+      'West Falls Church':'K06',
+      'East Falls Church':'K05',
+      'Ballston-MU':'K04',
+      'Virginia Square-GMU':'K03',
+      'Clarendon':'K02',
+      'Court House':'K01',
+      'Rossylyn':'C05',
+      'Foggy Bottom-GWU':'C04',
+      'Farragut West':'C03',
+      'McPherson Square':'C02',
+      'Metro Center':'C01',
+      'Federal Triangle':'D01',
+      'Smithsonian':'D02',
+      'L\'enfant Plaza':'D03',
+      'Federal Center SW':'D04',
+      'Capitol South':'D05',
+      'Eastern Market':'D06',
+      'Potomac Avenue':'D07',
+      'Stadium-Armory':'D08',
+      'Minnesota Avenue':'D09',
+      'Deanwood':'D10',
+      'Cheverly':'D11',
+      'Landover':'D12',
+      'New Carrollton':'D13',
+      'Wiehle-Reston East':'N06',
+      'Spring Hill':'N04',
+      'Greensboro':'N03',
+      'Tysons Corner':'N02',
+      'Mclean':'N01',
+      'East Falls Church':'K05',
+      'Ballston-MU':'K04',
+      'Virginia Square-GMU':'K03',
+      'Clarendon':'K02',
+      'Courthouse':'K01',
+      'Benning Road':'G01',
+      'Capitol Heights':'G02',
+      'Addison Road':'G03',
+      'Morgan Boulevard':'G04',
+      'Largo Town Center':'G05',
+      'Franconia-Springfield':'J03',
+      'Van Dorn Street':'J02',
+      'King Street-Old Town':'C13',
+      'Braddock Road':'C12',
+      'Potomac Yard':'C11',
+      'Ronald Reagan Washington National Airport':'C10',
+      'Crystal City':'C09',
+      'Pentagon City':'C08',
+      'Pentagon':'C07',
+      'Arlington Cemetery':'C06',
+      'Huntington':'C15',
+      'Eisenhower Ave':'C14',
+      'Archives-Navy Memorial - Penn Quarter':'F02',
+      'Mount Vernon Square':'E01',
+      'Shaw-Howard University':'E02',
+      'U Street/African-American Civil War Memorial':'E03',
+      'Columbia Heights':'E04',
+      'Georgia Avenue-Petworth':'E05',
+      'West Hyatsville':'E07',
+      'Prince George\'s Plaza':'E08',
+      'College Park - University of Maryland':'E09',
+      'Greenbelt':'E10',
+      'Branch Avenue':'F11',
+      'Suitland':'F10',
+      'Naylor Road':'F09',
+      'Southern Avenue':'F08',
+      'Congress Heights':'F07',
+      'Anacostia':'F06',
+      'Navy Yard - Ballpark':'F05',
+      'Waterfront':'F04'
     };
 
-    var redlineCodes = redlineCodes;
-      console.log(this.redlineCodes);
+    var metroLineCodes = vm.metroLineCodes;
+    console.log(metroLineCodes);
+    console.log(Object.keys(metroLineCodes));
+    console.log(Object.values(metroLineCodes));
 
     this.railInfo = function railInfo(){
       RailViewService.railInfo()
       .then(function success(data) {
-        var data = data;
+        // if(){
+        //
+        // }else {
+        //
+        // }
         vm.railIncident = data.data.Incidents;
         console.log('success', data.data.Incidents);
       })
@@ -275,18 +361,20 @@
 
     };
 
-    this.distance = function distance() {
-      RailViewService.stationDistance()
+    this.getStationToStation = function getStationToStation() {
+      vm.distance.start = metroLineCodes[vm.stationNames.start];
+      vm.distance.end = metroLineCodes[vm.stationNames.end];
+      RailViewService.stationDistance(vm.distance)
       .then(function success(data) {
-        vm.distances = data.data;
-        console.log('Miles to Destination', data.data);
+        vm.stationToStationInfo = data.data.StationToStationInfos[0];
+        console.log('Miles to Destination', vm.stationToStationInfo);
       })
       .catch(function failed(xhr) {
         console.log(xhr);
       });
     };
 
-    this.positions = function positions() {
+    this.getStationPositions = function getStationPositions() {
       RailViewService.stationPositions()
       .then(function successful(data) {
         vm.position = data.data;
@@ -362,11 +450,14 @@
       });
     }
 
-    function stationDistance(stationNames) {
+    function stationDistance(distance) {
       return $http({
-        url:'https://api.wmata.com/Rail.svc/json/jSrcStationToDstStationInfo?FromStationCode='
-        + stationNames + '&ToStationCode=' + stationNames,
+        url:'https://api.wmata.com/Rail.svc/json/jSrcStationToDstStationInfo',
         method: 'get',
+        params: {
+          FromStationCode: distance.start,
+          ToStationCode: distance.end
+        },
         headers: {
           'content-type':'application/json',
           'api_key': passKey
