@@ -16,7 +16,9 @@
     .state({
       name: 'home',
       url: '/',
-      templateUrl: 'views/home.template.html'
+      templateUrl: 'views/home.template.html',
+      controller: 'RailViewController',
+      controllerAs: 'railView'
     })
     .state({
       name: 'metro',
@@ -38,7 +40,7 @@
       templateUrl: 'views/login.template.html',
       controller: 'loginController',
       controlelrAs: 'login'
-    })
+    });
 
   }
 
