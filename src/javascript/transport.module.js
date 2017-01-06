@@ -26,20 +26,6 @@
       templateUrl: 'views/metro.template.html',
       controller: 'RailViewController',
       controllerAs: 'railView'
-    })
-    .state({
-      name:'positions',
-      url:'/positions',
-      templateUrl: 'views/rail-position.template.html',
-      controller: 'RailViewController',
-      controllerAs: 'railView'
-    })
-    .state({
-      name: 'login',
-      url: '/login',
-      templateUrl: 'views/login.template.html',
-      controller: 'loginController',
-      controlelrAs: 'login'
     });
 
   }

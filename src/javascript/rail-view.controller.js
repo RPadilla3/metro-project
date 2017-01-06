@@ -13,10 +13,12 @@
   function RailViewController(RailViewService) {
 
     var vm = this;
-    this.delayFailureMessage = undefined;
-    this.delayMessage = undefined;
-    this.parkingErrorMessage = undefined;
-    this.stationIncidentErrorMessage = undefined;
+    this.delayFailureMessage = false;
+    this.delayMessage = false;
+    this.parkingErrorMessage = false;
+    this.stationIncidentErrorMessage = false;
+    this.toggleCommuteInfo = false;
+    this.toggleClose = true;
     this.incidents = [];
     this.railIncident = [];
     this.railParking = [];
@@ -129,15 +131,19 @@
     // console.log(Object.keys(metroLineCodes));
     // console.log(Object.values(metroLineCodes));
 
+    this.toggleMetroInfo = function toggleMetroInfo(){
+      vm.toggleClose = true;
+    }
+
     this.railInfo = function railInfo(){
       RailViewService.railInfo()
       .then(function success(data) {
       vm.railIncident = data.data.Incidents;
       console.log('the array', vm.railIncident);
-        console.log('success', data.data.Incidents);
+      console.log('success', data.data.Incidents);
       })
       .catch(function failure(xhr) {
-        vm.delayFailureMessage = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server';
+        vm.delayFailureMessage = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server.';
         console.error('No data for you :(', xhr);
       });
     };
@@ -149,7 +155,7 @@
         console.log('Rail Parking', data.data);
       })
       .catch(function failed(xhr) {
-        vm.parkingErrorMessage = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server'
+        vm.parkingErrorMessage = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server.'
         console.error('No data for you :(', xhr);
       });
     };
@@ -159,10 +165,11 @@
       RailViewService.stationIncidents()
       .then(function success(data) {
         vm.incidents = data.data.ElevatorIncidents;
+        vm.toggleClose = false;
         console.log('You got it!', data.data.ElevatorIncidents);
       })
       .catch(function failure(xhr) {
-        vm.stationIncidentErrorMessage = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server';
+        vm.stationIncidentErrorMessage = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server.';
         console.log('Failed', xhr);
       });
 
@@ -174,10 +181,11 @@
       RailViewService.stationDistance(vm.distance)
       .then(function success(data) {
         vm.stationToStationInfo = data.data.StationToStationInfos[0];
-        console.log('Miles to Destination', this.stationToStationInfo);
+        vm.toggleCommuteInfo = true;
+        console.log('Miles to Destination', vm.stationToStationInfo);
       })
       .catch(function failed(xhr) {
-        vm.stationToStationError = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server';
+        vm.stationToStationError = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server.';
         console.log(xhr);
       });
     };

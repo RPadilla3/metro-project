@@ -1,27 +1,29 @@
 <main id='forms'>
   <section class='metro-delays'>
     <h1>Metro Delays</h1>
-    <ul class='delay-styles'>
+    <ul class='delay-styles' >
       <li ng-repeat='delay in railView.railIncident' class='styles'>
         <p class='glyphicon glyphicon-alert'>    {{delay.Description}}</p>
       </li>
     </ul>
     <p ng-show='railView.delayFailureMessage' class='alert alert-danger'>{{railView.delayFailureMessage}}</p>
-    <button ng-click='railView.railInfo()'>Get Info</button>
+    <button class='btn btn-default' ng-click='railView.railInfo()'>Get Info</button>
+
   </section>
 
   <section class='station-incidents'>
     <h1>Station Incidents</h1>
-    <ul class='delay-styles'>
+    <ul class='delay-styles' ng-hide='railView.toggleClose'>
       <li ng-repeat='incident in railView.incidents | limitTo: 5' class='styles'>
         <h4>Station: {{incident.StationName}}</h4>
         <p>Description: {{incident.LocationDescription}}</p>
         <p>Cause: {{incident.SymptomDescription}}</p>
       </li>
     </ul>
-  </section>
-    <button ng-click='railView.getIncidents()'>Get Info</button>
-  </section>
+    <p ng-show='railView.stationIncidentErrorMessage' class='alert alert-danger'>{{railView.stationIncidentErrorMessage}}</p>
+    <button ng-show='railView.toggleClose' class='btn btn-default' ng-click='railView.getIncidents()'>Get Info</button>
+    <button ng-hide='railView.toggleClose' class='btn btn-default' ng-click='railView.toggleMetroInfo()'>Close</button>
+    </section>
 
   <section>
     <h1>Station Parking Info</h1>
@@ -32,7 +34,8 @@
         <p>{{parking.Notes}}</p>
       </li>
   </ul>
-  <button ng-click='railView.railPark()'>Get Info</button>
+  <p ng-show='railView.parkingErrorMessage' class='alert alert-danger'>{{railView.parkingErrorMessage}}</p>
+  <button class='btn btn-default' ng-click='railView.railPark()'>Get Info</button>
   </section>
   <!-- <section mapbox class='main-map'></section>
   <section id='map'></section> -->
