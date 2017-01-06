@@ -3,9 +3,10 @@
     <h1>Metro Delays</h1>
     <ul class='delay-styles'>
       <li ng-repeat='delay in railView.railIncident' class='styles'>
-        <p>{{delay.Description}}</p>
+        <p class='glyphicon glyphicon-alert'>    {{delay.Description}}</p>
       </li>
     </ul>
+    <p ng-show='railView.delayFailureMessage' class='alert alert-danger'>{{railView.delayFailureMessage}}</p>
     <button ng-click='railView.railInfo()'>Get Info</button>
   </section>
 
@@ -25,9 +26,10 @@
   <section>
     <h1>Station Parking Info</h1>
   <ul class='delay-styles'>
-      <li ng-repeat='parking in railView.railParking | limitTo: 5' class='styles'>
+      <li ng-repeat='parking in railView.railParking | limitTo: 4' class='styles'>
         <h3>Station Code: {{parking.Code}}</h3>
         <p>Short Term {{parking.ShortTermParking.Notes}}</p>
+        <p>{{parking.Notes}}</p>
       </li>
   </ul>
   <button ng-click='railView.railPark()'>Get Info</button>
