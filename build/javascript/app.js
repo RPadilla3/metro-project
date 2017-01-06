@@ -26,20 +26,6 @@
       templateUrl: 'views/metro.template.html',
       controller: 'RailViewController',
       controllerAs: 'railView'
-    })
-    .state({
-      name:'positions',
-      url:'/positions',
-      templateUrl: 'views/rail-position.template.html',
-      controller: 'RailViewController',
-      controllerAs: 'railView'
-    })
-    .state({
-      name: 'login',
-      url: '/login',
-      templateUrl: 'views/login.template.html',
-      controller: 'loginController',
-      controlelrAs: 'login'
     });
 
   }
@@ -200,20 +186,16 @@
   function RailViewController(RailViewService) {
 
     var vm = this;
+    // this.delayFailureMessage = undefined;
+    // this.delayMessage = undefined;
+    // this.parkingErrorMessage = undefined;
+    // this.stationIncidentErrorMessage = undefined;
     this.incidents = [];
     this.railIncident = [];
     this.railParking = [];
     this.distance = {};
     this.position = [];
     this.stationNames = {};
-
-    // Red line,
-    // silver line,
-    // orange line,
-    // blue line,
-    // yellow line,
-    // green line
-
     this.metroLineCodes = {
       'Shady Grove':'A15',
       'Rockville':'A14',
@@ -315,26 +297,22 @@
       'Waterfront':'F04'
     };
 
-    var metroLineCodes = vm.metroLineCodes;
+    var metroLineCodes = this.metroLineCodes;
     console.log(metroLineCodes);
-    console.log(Object.keys(metroLineCodes));
-    console.log(Object.values(metroLineCodes));
+    // console.log(Object.keys(metroLineCodes));
+    // console.log(Object.values(metroLineCodes));
 
     this.railInfo = function railInfo(){
       RailViewService.railInfo()
       .then(function success(data) {
-        // if(){
-        //
-        // }else {
-        //
-        // }
-        vm.railIncident = data.data.Incidents;
+      vm.railIncident = data.data.Incidents;
+      console.log('the array', vm.railIncident);
         console.log('success', data.data.Incidents);
       })
       .catch(function failure(xhr) {
+        vm.delayFailureMessage = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server';
         console.error('No data for you :(', xhr);
       });
-
     };
 
     this.railPark = function railPark() {
@@ -344,6 +322,7 @@
         console.log('Rail Parking', data.data);
       })
       .catch(function failed(xhr) {
+        vm.parkingErrorMessage = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server'
         console.error('No data for you :(', xhr);
       });
     };
@@ -356,6 +335,7 @@
         console.log('You got it!', data.data.ElevatorIncidents);
       })
       .catch(function failure(xhr) {
+        vm.stationIncidentErrorMessage = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server';
         console.log('Failed', xhr);
       });
 
@@ -367,9 +347,10 @@
       RailViewService.stationDistance(vm.distance)
       .then(function success(data) {
         vm.stationToStationInfo = data.data.StationToStationInfos[0];
-        console.log('Miles to Destination', vm.stationToStationInfo);
+        console.log('Miles to Destination', this.stationToStationInfo);
       })
       .catch(function failed(xhr) {
+        vm.stationToStationError = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server';
         console.log(xhr);
       });
     };
@@ -384,11 +365,7 @@
         console.log(xhr);
       });
     };
-
-
-
   }
-
 
 }());
 
