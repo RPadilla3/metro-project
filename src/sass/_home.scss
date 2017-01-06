@@ -4,4 +4,22 @@
 
 .commute-info {
   list-style: none;
+  color: #fff;
+  display: block;
+
+}
+
+.commute-border {
+  border: 2px solid black;
+  background: rgba(113, 102, 102, 0.8);
+  margin-left: 40%;
+  margin-right: 40%;
+  margin-top: 2%;
+  margin-bottom: 1%;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.commute {
+  margin-top: 1.5%;
 }
