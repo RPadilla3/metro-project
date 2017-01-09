@@ -32,6 +32,18 @@
             "EmergencyText": null,
             "LinesAffected": "RD;",
             "DateUpdated": "2017-01-09T10:58:29"
+          },
+          {
+            "IncidentID": "16F9EDC0-A695-4940-AE0C-0FD186466BEA",
+            "Description": "Silver Line trains operating btwn Wiehle-Reston E & Ballston only due to scheduled track work. Use Orange/Blue Lines to/from other stations.",
+            "StartLocationFullName": null,
+            "EndLocationFullName": null,
+            "PassengerDelay": 0,
+            "DelaySeverity": null,
+            "IncidentType": "Alert",
+            "EmergencyText": null,
+            "LinesAffected": "SV;",
+            "DateUpdated": "2017-01-09T10:18:47"
           }
         ]
       });
@@ -50,8 +62,11 @@
 
       result
         .then(function(data) {
-          console.log('data', data.data.Incidents[0].Description);
-          expect(data.data.Incidents[0].Description).to.equal("Red Line: Expect residual delays to Shady Grove due to an earlier signal problem at Farragut North.")
+          expect(data.data.Incidents[0].Description).to.equal("Red Line: Expect residual delays to Shady Grove due to an earlier signal problem at Farragut North.");
+          expect(data.data.Incidents[0].LinesAffected).to.equal("RD;");
+          expect(data.data.Incidents[0].IncidentID).to.equal("01C30D6E-8E5E-4B06-9D47-2E277530DE5F");
+          expect(data.data.Incidents[0].IncidentType).to.equal("Delay");
+          expect(data.data.Incidents[1].LinesAffected).to.equal("SV;");
           done();
         })
         .catch(function() {
