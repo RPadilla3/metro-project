@@ -68,6 +68,7 @@
         expect(data.data.Incidents[0].IncidentID).to.equal("01C30D6E-8E5E-4B06-9D47-2E277530DE5F");
         expect(data.data.Incidents[0].IncidentType).to.equal("Delay");
         expect(data.data.Incidents[1].LinesAffected).to.equal("SV;");
+        expect(data.data.Incidents[1].PassengerDelay).to.be.a('number');
         done();
       })
       .catch(function() {
@@ -129,8 +130,8 @@
 
       result
       .then(function(data) {
-        console.log(data.data.ElevatorIncidents[0].UnitType);
-        expect(data.data.ElevatorIncidents[0].UnitType).to.equal('ESCALATOR')
+        expect(data.data.ElevatorIncidents[0].UnitType).to.equal('ESCALATOR');
+        expect(data.data.ElevatorIncidents[0].DisplayOrder).to.be.a('number');
         done();
       })
       .catch(function() {
@@ -139,6 +140,69 @@
 
       $httpBackend.flush();
     });
+
+  });
+
+  describe('Getting Station Incidents', function() {
+
+    var RailViewService;
+    var $httpBackend;
+    var $rootScope;
+
+    beforeEach(module('transport'));
+
+    beforeEach(inject(function(_$httpBackend_,_RailViewService_,_$rootScope_) {
+      $httpBackend = _$httpBackend_;
+      RailViewService = _RailViewService_;
+      $rootScope = _$rootScope_;
+
+
+      $httpBackend
+      .whenGET('https://api.wmata.com/Rail.svc/json/jStationParking')
+      .respond({
+        "StationsParking": [
+          {
+            "Code": "A07",
+            "Notes": null,
+            "AllDayParking": {
+              "TotalCount": 0,
+              "RiderCost": null,
+              "NonRiderCost": null
+            },
+            "ShortTermParking": {
+              "TotalCount": 17,
+              "Notes": "Parking available 8:30 am - 3:30 pm and 7 pm - 2 am"
+            }
+          }
+        ]
+      });
+
+      $httpBackend
+      .whenGET('views/home.template.html')
+      .respond('Home Page');
+
+    }));
+
+    it('Should get all Parking info for the stations', function(done) {
+      var result = RailViewService.railParking();
+      expect(result).to.be.an('object');
+      expect(result.then).to.be.a('function');
+      expect(result.catch).to.be.a('function');
+
+      result
+      .then(function(data) {
+      expect(data.data.StationsParking).to.be.a('array');
+      expect(data.data.StationsParking[0].Code).to.be.a('string');
+      expect(data.data.StationsParking[0].ShortTermParking.TotalCount).to.be.a('number');
+
+      done();
+      })
+      .catch(function() {
+        done('In the catch')
+      })
+
+      $httpBackend.flush();
+    })
 
   });
 
