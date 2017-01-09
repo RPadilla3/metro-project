@@ -26,7 +26,7 @@
 
     function railInfo() {
       return $http({
-        url: 'https://api.wmata.com/Incidents.svc/json/Incidents',
+        url: 'https://api.wmata.com/Incidents.svc/json/Incident',
         method: 'get',
         headers: {
           'content-type': 'application/json',

@@ -19,6 +19,7 @@
     this.stationIncidentErrorMessage = false;
     this.toggleCommuteInfo = false;
     this.toggleClose = true;
+    this.trainPositionError = false;
     this.incidents = [];
     this.railIncident = [];
     this.railParking = [];
@@ -139,9 +140,9 @@
     this.railInfo = function railInfo(){
       RailViewService.railInfo()
       .then(function success(data) {
-      vm.railIncident = data.data.Incidents;
-      console.log('the array', vm.railIncident);
-      console.log('success', data.data.Incidents);
+        vm.railIncident = data.data.Incidents;
+        console.log('the array', vm.railIncident);
+        console.log('success', data.data.Incidents);
       })
       .catch(function failure(xhr) {
         vm.delayFailureMessage = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server.';
@@ -204,13 +205,14 @@
 
     this.getTrainPositions = function getTrainPositions(){
       RailViewService.trainPositions()
-        .then(function success(data) {
-          vm.trainPosition = data.data.Trains;
-          console.log('success', data.data);
-        })
-        .catch(function failed(xhr) {
-          console.log('failed', xhr);
-        });
+      .then(function success(data) {
+        vm.trainPosition = data.data.Trains;
+        console.log('success', data.data);
+      })
+      .catch(function failed(xhr) {
+        vm.trainPositionError = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server.'
+        console.log('failed', xhr);
+      });
     };
   }
 
