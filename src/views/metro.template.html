@@ -25,8 +25,19 @@
     <button ng-hide='railView.toggleClose' class='btn btn-default' ng-click='railView.toggleMetroInfo()'>Close</button>
     </section>
 
-  <section>
-    <h1>Station Parking Info</h1>
+    <section>
+      <h1>Train Positions</h1>
+      <ul class='delay-styles'>
+        <li ng-repeat='position in railView.trainPosition' class='styles'>
+          <h4>{{position.Destination}}</h4>
+          <h5>{{position.Min}}</h5>
+        </li>
+      </ul>
+      <button class='btn btn-default' ng-click='railView.getTrainPositions()'>Train Position</button>
+    </section>
+
+  <!-- <section> -->
+    <!-- <h1>Station Parking Info</h1>
   <ul class='delay-styles'>
       <li ng-repeat='parking in railView.railParking | limitTo: 4' class='styles'>
         <h3>Station Code: {{parking.Code}}</h3>
@@ -36,7 +47,7 @@
   </ul>
   <p ng-show='railView.parkingErrorMessage' class='alert alert-danger'>{{railView.parkingErrorMessage}}</p>
   <button class='btn btn-default' ng-click='railView.railPark()'>Get Info</button>
-  </section>
+  </section> -->
   <!-- <section mapbox class='main-map'></section>
   <section id='map'></section> -->
 

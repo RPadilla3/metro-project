@@ -20,7 +20,8 @@
       railParking: railParking,
       stationIncidents: stationIncidents,
       stationDistance: stationDistance,
-      stationPositions: stationPositions
+      // stationPositions: stationPositions,
+      trainPositions: trainPositions
     };
 
     function railInfo() {
@@ -71,12 +72,12 @@
       });
     }
 
-    function stationPositions() {
+    function trainPositions(){
       return $http({
-        url: 'https://api.wmata.com/Rail.svc/json/jStations?LineCode=RD',
-        method: 'get',
+        url: 'https://api.wmata.com/StationPrediction.svc/json/GetPrediction/B03',
+        method:'get',
         headers: {
-          'content-type': 'application/json',
+          'content-type':'application/json',
           'api_key': passKey
         }
       });

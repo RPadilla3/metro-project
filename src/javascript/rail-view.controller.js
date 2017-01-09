@@ -24,6 +24,7 @@
     this.railParking = [];
     this.distance = {};
     this.position = [];
+    this.trainPosition = [];
     this.stationNames = {};
     this.metroLineCodes = {
       'Shady Grove':'A15',
@@ -199,6 +200,17 @@
       .catch(function failure(xhr) {
         console.log(xhr);
       });
+    };
+
+    this.getTrainPositions = function getTrainPositions(){
+      RailViewService.trainPositions()
+        .then(function success(data) {
+          vm.trainPosition = data.data.Trains;
+          console.log('success', data.data);
+        })
+        .catch(function failed(xhr) {
+          console.log('failed', xhr);
+        });
     };
   }
 
