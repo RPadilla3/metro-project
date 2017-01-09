@@ -27,19 +27,21 @@
 
   <section>
     <h1>Train Positions</h1>
-    <ul class='delay-styles'>
-      <div class='form-group form-group has-success train'>
-        <label for='train'>Station:</label>
-        <input type='text' id='train' class='form-control' ng-model='railView.liveTrainLocation.code' required>
-      </div>
-      <li ng-repeat='position in railView.trainPosition' class='styles'>
-        <h4>Destination: {{position.DestinationName}}</h4>
-        <h4>{{position.Car}} Car Train</h4>
-        <h5>Time(min): {{position.Min}}</h5>
-      </li>
-    </ul>
-    <p ng-show='railView.trainPositionError' class='alert alert-danger'>{{railView.trainPositionError}}</p>
-    <button class='btn btn-default' ng-click='railView.getTrainPositions(railView.liveTrainLocation.code)'>Train Position</button>
+    <form ng-submit='railView.getTrainPositions(railView.liveTrainLocation.code)'>
+      <ul class='delay-styles'>
+        <li class='form-group form-group has-success train'>
+          <label for='train'>Station:</label>
+          <input type='text' id='train' class='form-control' ng-model='railView.liveTrainLocation.code' required>
+        </li>
+        <li ng-repeat='position in railView.trainPosition' class='styles'>
+          <h4>Destination: {{position.DestinationName}}</h4>
+          <h4>{{position.Car}} Car Train</h4>
+          <h5>Time(min): {{position.Min}}</h5>
+        </li>
+      </ul>
+      <p ng-show='railView.trainPositionError' class='alert alert-danger'>{{railView.trainPositionError}}</p>
+      <input type='submit' class='btn btn-default' value='Train Position'>
+    </form>
   </section>
 
   <!-- <section> -->
