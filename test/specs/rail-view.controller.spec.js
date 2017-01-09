@@ -35,6 +35,19 @@
     RailViewController = $controller('RailViewController', {$scope: $scope});
   }));
 
+  it('Should have correct scope variable', function() {
+    expect(RailViewController.liveTrainLocation).to.be.a('object');
+    expect(RailViewController.incidents).to.be.an('array');
+    expect(RailViewController.railIncident).to.be.an('array');
+    expect(RailViewController.railParking).to.be.an('array');
+    expect(RailViewController.distance).to.be.a('object');
+    expect(RailViewController.position).to.be.an('array');
+    expect(RailViewController.trainPosition).to.be.an('array');
+    expect(RailViewController.stationNames).to.be.a('object');
+    expect(RailViewController.metroLineCodes).to.be.a('object');
+    expect(RailViewController.metroLineCodes.Rockville).to.equal('A14');
+  });
+
 });
 
 }());
