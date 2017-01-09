@@ -45,13 +45,25 @@
     it('should be able to GET a list of metro delays', function(done) {
       var result = RailViewService.railInfo();
       expect(result).to.be.a('object');
-      done();
+      expect(result.then).to.be.a('function');
+      expect(result.catch).to.be.a('function');
+
+      result
+        .then(function(data) {
+          console.log('data', data.data.Incidents[0].Description);
+          expect(data.data.Incidents[0].Description).to.equal("Red Line: Expect residual delays to Shady Grove due to an earlier signal problem at Farragut North.")
+          done();
+        })
+        .catch(function() {
+          done('In the catch');
+        })
+
+      $httpBackend.flush();
     });
 
 
 
 
-    // $httpBackend.flush();
 
   });
 
