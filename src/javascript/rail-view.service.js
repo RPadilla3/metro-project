@@ -20,13 +20,12 @@
       railParking: railParking,
       stationIncidents: stationIncidents,
       stationDistance: stationDistance,
-      // stationPositions: stationPositions,
       trainPositions: trainPositions
     };
 
     function railInfo() {
       return $http({
-        url: 'https://api.wmata.com/Incidents.svc/json/Incident',
+        url: 'https://api.wmata.com/Incidents.svc/json/Incidents',
         method: 'get',
         headers: {
           'content-type': 'application/json',
@@ -72,9 +71,10 @@
       });
     }
 
-    function trainPositions(){
+    function trainPositions(trainCode){
+      console.log(trainCode);
       return $http({
-        url: 'https://api.wmata.com/StationPrediction.svc/json/GetPrediction/B03',
+        url: 'https://api.wmata.com/StationPrediction.svc/json/GetPrediction/' + trainCode,
         method:'get',
         headers: {
           'content-type':'application/json',

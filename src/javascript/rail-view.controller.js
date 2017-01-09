@@ -4,7 +4,7 @@
   angular.module('transport')
   .controller('RailViewController', RailViewController);
 
-  RailViewController.$inject = ['RailViewService', 'MapDetailService'];
+  RailViewController.$inject = ['RailViewService'];
 
   /**
   * [RailViewController description]
@@ -20,6 +20,7 @@
     this.toggleCommuteInfo = false;
     this.toggleClose = true;
     this.trainPositionError = false;
+    this.liveTrainLocation = {};
     this.incidents = [];
     this.railIncident = [];
     this.railParking = [];
@@ -42,7 +43,7 @@
       'Woodley Park':'A04',
       'Dupont Circle':'A03',
       'Farragut North':'A02',
-      'Metro Center':'A01',
+      'metro center':'A01',
       'Gallery Place China Town':'B01',
       'Judiciary Square':'B02',
       'Union Station':'B03',
@@ -60,7 +61,6 @@
       'West Falls Church':'K06',
       'East Falls Church':'K05',
       'Ballston-MU':'K04',
-      'Virginia Square-GMU':'K03',
       'Clarendon':'K02',
       'Court House':'K01',
       'Rossylyn':'C05',
@@ -86,10 +86,7 @@
       'Greensboro':'N03',
       'Tysons Corner':'N02',
       'Mclean':'N01',
-      'East Falls Church':'K05',
-      'Ballston-MU':'K04',
       'Virginia Square-GMU':'K03',
-      'Clarendon':'K02',
       'Courthouse':'K01',
       'Benning Road':'G01',
       'Capitol Heights':'G02',
@@ -135,7 +132,7 @@
 
     this.toggleMetroInfo = function toggleMetroInfo(){
       vm.toggleClose = true;
-    }
+    };
 
     this.railInfo = function railInfo(){
       RailViewService.railInfo()
@@ -145,7 +142,7 @@
         console.log('success', data.data.Incidents);
       })
       .catch(function failure(xhr) {
-        vm.delayFailureMessage = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server.';
+        vm.delayFailureMessage = 'Failed to communicate to WMATA server.';
         console.error('No data for you :(', xhr);
       });
     };
@@ -157,7 +154,7 @@
         console.log('Rail Parking', data.data);
       })
       .catch(function failed(xhr) {
-        vm.parkingErrorMessage = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server.'
+        vm.parkingErrorMessage = 'Failed to communicate to WMATA server.';
         console.error('No data for you :(', xhr);
       });
     };
@@ -171,7 +168,7 @@
         console.log('You got it!', data.data.ElevatorIncidents);
       })
       .catch(function failure(xhr) {
-        vm.stationIncidentErrorMessage = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server.';
+        vm.stationIncidentErrorMessage = 'Failed to communicate to WMATA server.';
         console.log('Failed', xhr);
       });
 
@@ -187,7 +184,7 @@
         console.log('Miles to Destination', vm.stationToStationInfo);
       })
       .catch(function failed(xhr) {
-        vm.stationToStationError = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server.';
+        vm.stationToStationError = 'Failed to communicate to WMATA server.';
         console.log(xhr);
       });
     };
@@ -203,14 +200,15 @@
       });
     };
 
-    this.getTrainPositions = function getTrainPositions(){
-      RailViewService.trainPositions()
+    this.getTrainPositions = function getTrainPositions(trainCode){
+      console.log(trainCode);
+      RailViewService.trainPositions(trainCode)
       .then(function success(data) {
         vm.trainPosition = data.data.Trains;
-        console.log('success', data.data);
+        console.log('success', data);
       })
       .catch(function failed(xhr) {
-        vm.trainPositionError = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server.'
+        vm.trainPositionError = 'Failed to communicate to WMATA server.';
         console.log('failed', xhr);
       });
     };

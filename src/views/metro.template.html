@@ -30,15 +30,16 @@
     <ul class='delay-styles'>
       <div class='form-group form-group has-success train'>
         <label for='train'>Station:</label>
-        <input type='text' id='train' class='form-control' required>
+        <input type='text' id='train' class='form-control' ng-model='railView.liveTrainLocation.code' required>
       </div>
       <li ng-repeat='position in railView.trainPosition' class='styles'>
         <h4>Destination: {{position.DestinationName}}</h4>
+        <h4>{{position.Car}} Car Train</h4>
         <h5>Time(min): {{position.Min}}</h5>
       </li>
     </ul>
     <p ng-show='railView.trainPositionError' class='alert alert-danger'>{{railView.trainPositionError}}</p>
-    <button class='btn btn-default' ng-click='railView.getTrainPositions()'>Train Position</button>
+    <button class='btn btn-default' ng-click='railView.getTrainPositions(railView.liveTrainLocation.code)'>Train Position</button>
   </section>
 
   <!-- <section> -->
