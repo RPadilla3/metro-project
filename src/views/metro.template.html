@@ -23,33 +23,38 @@
     <p ng-show='railView.stationIncidentErrorMessage' class='alert alert-danger'>{{railView.stationIncidentErrorMessage}}</p>
     <button ng-show='railView.toggleClose' class='btn btn-default' ng-click='railView.getIncidents()'>Get Info</button>
     <button ng-hide='railView.toggleClose' class='btn btn-default' ng-click='railView.toggleMetroInfo()'>Close</button>
-    </section>
+  </section>
 
-    <section>
-      <h1>Train Positions</h1>
-      <ul class='delay-styles'>
-        <li ng-repeat='position in railView.trainPosition' class='styles'>
-          <h4>{{position.Destination}}</h4>
-          <h5>{{position.Min}}</h5>
-        </li>
-      </ul>
-      <button class='btn btn-default' ng-click='railView.getTrainPositions()'>Train Position</button>
-    </section>
+  <section>
+    <h1>Train Positions</h1>
+    <ul class='delay-styles'>
+      <div class='form-group form-group has-success train'>
+        <label for='train'>Station:</label>
+        <input type='text' id='train' class='form-control' required>
+      </div>
+      <li ng-repeat='position in railView.trainPosition' class='styles'>
+        <h4>Destination: {{position.DestinationName}}</h4>
+        <h5>Time(min): {{position.Min}}</h5>
+      </li>
+    </ul>
+    <p ng-show='railView.trainPositionError' class='alert alert-danger'>{{railView.trainPositionError}}</p>
+    <button class='btn btn-default' ng-click='railView.getTrainPositions()'>Train Position</button>
+  </section>
 
   <!-- <section> -->
-    <!-- <h1>Station Parking Info</h1>
+  <!-- <h1>Station Parking Info</h1>
   <ul class='delay-styles'>
-      <li ng-repeat='parking in railView.railParking | limitTo: 4' class='styles'>
-        <h3>Station Code: {{parking.Code}}</h3>
-        <p>Short Term {{parking.ShortTermParking.Notes}}</p>
-        <p>{{parking.Notes}}</p>
-      </li>
-  </ul>
-  <p ng-show='railView.parkingErrorMessage' class='alert alert-danger'>{{railView.parkingErrorMessage}}</p>
-  <button class='btn btn-default' ng-click='railView.railPark()'>Get Info</button>
-  </section> -->
-  <!-- <section mapbox class='main-map'></section>
-  <section id='map'></section> -->
+  <li ng-repeat='parking in railView.railParking | limitTo: 4' class='styles'>
+  <h3>Station Code: {{parking.Code}}</h3>
+  <p>Short Term {{parking.ShortTermParking.Notes}}</p>
+  <p>{{parking.Notes}}</p>
+</li>
+</ul>
+<p ng-show='railView.parkingErrorMessage' class='alert alert-danger'>{{railView.parkingErrorMessage}}</p>
+<button class='btn btn-default' ng-click='railView.railPark()'>Get Info</button>
+</section> -->
+<!-- <section mapbox class='main-map'></section>
+<section id='map'></section> -->
 
 
 </main>
