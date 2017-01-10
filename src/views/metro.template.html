@@ -1,6 +1,6 @@
 <main id='forms'>
   <section class='metro-delays'>
-    <h1>Metro Delays</h1>
+    <h1 class='label-box'>Metro Delays</h1>
     <ul class='delay-styles' ng-hide='railView.delayMessage'>
       <li ng-repeat='delay in railView.railIncident' class='styles'>
         <p class='glyphicon glyphicon-alert'>    {{delay.Description}}</p>
@@ -13,7 +13,7 @@
   </section>
 
   <section class='station-incidents'>
-    <h1>Station Incidents</h1>
+    <h1 class='label-box'>Station Incidents</h1>
     <ul class='delay-styles' ng-hide='railView.toggleClose'>
       <li ng-repeat='incident in railView.incidents | limitTo: 5' class='styles'>
         <h4>Station: {{incident.StationName}}</h4>
@@ -27,12 +27,12 @@
   </section>
 
   <section>
-    <h1>Train Positions</h1>
+    <h1 class='label-box'>Train Positions</h1>
     <form>
       <ul class='delay-styles' >
         <li class='form-group form-group has-success train'>
-          <label for='train'>Station:</label>
-          <input type='text' id='train' class='form-control' ng-model='railView.liveTrains.code' required>
+          <!-- <label for='train'>Station:</label> -->
+          <input type='text' id='train' class='form-control' ng-model='railView.liveTrains.code' required placeholder='Station Name'>
         </li>
         <li ng-repeat='position in railView.trainPosition' class='styles'>
           <h4>Final Destination: {{position.DestinationName}}</h4>

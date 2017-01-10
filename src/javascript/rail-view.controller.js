@@ -49,8 +49,6 @@
           vm.noDelayMessage = 'No current Metro Delays.';
         }
         vm.delayMessage = false;
-        console.log(vm.railIncident.length);
-        // vm.toggleDelayInfo = true;
         console.log('the array', vm.railIncident);
       })
       .catch(function failure(xhr) {
@@ -88,8 +86,6 @@
     this.getStationToStation = function getStationToStation() {
       vm.distance.start = MetroLineService.metroStationToCode(vm.stationNames.start);
       vm.distance.end = MetroLineService.metroStationToCode(vm.stationNames.end);
-      // vm.distance.start = metroLineCodes[vm.stationNames.start];
-      // vm.distance.end = metroLineCodes[vm.stationNames.end];
       RailViewService.stationDistance(vm.distance)
       .then(function success(data) {
         vm.stationToStationInfo = data.data.StationToStationInfos[0];
