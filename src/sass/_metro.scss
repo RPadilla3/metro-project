@@ -18,7 +18,19 @@
   .train {
     margin-left: 35%;
     margin-right: 35%;
+    list-style: none;
   }
 
+}
 
+.label-box {
+  border: 2px solid black;
+  font-size: 2em;
+  background: rgba(#e8e8e8, 0.77);
+  margin-left: 35%;
+  margin-right: 35%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
