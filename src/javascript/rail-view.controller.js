@@ -20,6 +20,7 @@
     this.toggleCommuteInfo = false;
     this.toggleClose = true;
     this.trainPositionError = false;
+    this.noDelayMessage = false;
     this.liveTrainLocation = {};
     this.incidents = [];
     this.railIncident = [];
@@ -135,9 +136,15 @@
     };
 
     this.railInfo = function railInfo(){
+
       RailViewService.railInfo()
       .then(function success(data) {
         vm.railIncident = data.data.Incidents;
+        if(vm.railIncident.length === 0) {
+          vm.noDelayMessage = 'No current Metro Delays.';
+        }
+        console.log(vm.railIncident.length);
+        // vm.toggleDelayInfo = true;
         console.log('the array', vm.railIncident);
         console.log('success', data.data.Incidents);
       })
@@ -208,7 +215,7 @@
         console.log('success', data);
       })
       .catch(function failed(xhr) {
-        vm.trainPositionError = 'Failed to communicate to WMATA server.';
+        vm.trainPositionError = 'Failed to communicate to WMATA server: Please try again later.';
         console.log('failed', xhr);
       });
     };
