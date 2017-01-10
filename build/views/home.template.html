@@ -14,14 +14,14 @@
       <input type='text' id='destination' class='form-control' ng-model='railView.stationNames.end' required>
     </div>
   </form>
-  <p ng-show='railView.stationToStationError'>{{railView.stationToStationError}}</p>
-<div ng-show='railView.toggleCommuteInfo' class='commute-border'>
-  <h3 class='commute-info' ng-show='railView.toggleCommuteInfo'>Miles: {{railView.stationToStationInfo.CompositeMiles}}</h3>
-  <h3 class='commute-info' ng-show='railView.toggleCommuteInfo'>Travel time(min): {{railView.stationToStationInfo.RailTime}}</h3>
-  <h4 class='commute-info' ng-show='railView.toggleCommuteInfo'>Price: </h4>
-  <h5 class='commute-info' ng-show='railView.toggleCommuteInfo'>Off Peak: ${{railView.stationToStationInfo.RailFare.OffPeakTime}}</h5>
-  <h5 class='commute-info' ng-show='railView.toggleCommuteInfo'>On Peak: ${{railView.stationToStationInfo.RailFare.PeakTime}}</h5>
-  <h5 class='commute-info' ng-show='railView.toggleCommuteInfo'>Senior/Disabled: ${{railView.stationToStationInfo.RailFare.SeniorDisabled}}</h5>
-</div>
+  <p ng-show='railView.stationToStationError' class='alert alert-danger error-message'>{{railView.stationToStationError}}</p>
+  <div ng-show='railView.toggleCommuteInfo' class='commute-border'>
+    <h3 class='commute-info' ng-show='railView.toggleCommuteInfo'>Miles: {{railView.stationToStationInfo.CompositeMiles}}</h3>
+    <h3 class='commute-info' ng-show='railView.toggleCommuteInfo'>Travel time(min): {{railView.stationToStationInfo.RailTime}}</h3>
+    <h4 class='commute-info' ng-show='railView.toggleCommuteInfo'>Price</h4>
+    <h5 class='commute-info' ng-show='railView.toggleCommuteInfo'>Off Peak: ${{railView.stationToStationInfo.RailFare.OffPeakTime}}</h5>
+    <h5 class='commute-info' ng-show='railView.toggleCommuteInfo'>On Peak: ${{railView.stationToStationInfo.RailFare.PeakTime}}</h5>
+    <h5 class='commute-info' ng-show='railView.toggleCommuteInfo'>Senior/Disabled: ${{railView.stationToStationInfo.RailFare.SeniorDisabled}}</h5>
+  </div>
   <button class='btn btn-primary btn-sm active commute' ng-click='railView.getStationToStation()'>Get Commute</button>
 </section>

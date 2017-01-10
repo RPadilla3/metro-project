@@ -36,169 +36,11 @@
   'use strict';
 
   angular.module('transport')
-    .factory('MapDetailService', MapDetailService);
+  .factory('MetroLineService', MetroLineService);
 
-  MapDetailService.$inject = ['$http'];
-
-  function MapDetailService($http) {
-
-    return {
-      getStations: getStations
-    };
-
-  function getStations(){
-
-    var metroData;
-
-    return $http({
-      url: 'http://opendata.dc.gov/datasets/ab5661e1a4d74a338ee51cd9533ac787_50.geojson',
-      method: 'get'
-    })
-    .then(function returnedData(data) {
-      metroData = data.data;
-      console.log('Metro station lat,lon', metroData);
-
-      return data.data
-
-    })
-  }
-}
-
-
-}());
-
- (function() {
-  'use strict';
-
-  angular.module('transport')
-  .directive('mapbox', MapBox);
-
-
-  function MapBox() {
-    return {
-      restrict: 'EA',
-      link: function (scope, element) {
-        var map = L.mapbox.map('map');
-        L.mapbox.accessToken = 'pk.eyJ1IjoicnBhZGlsbGEzIiwiYSI6ImNpd3hrZjF4MTAwN20ydW82ODNyOHp3Z2UifQ.ATqkcRlunPfsvsS5SGFM6Q';
-        L.mapbox.map(element[0], 'mapbox.streets')
-        .setView([38.9072, -77.0369], 13.2)
-        .addLayer(L.mapbox.tileLayer('mapbox.streets'));
-        L.mapbox.featureLayer()
-        .loadURL('views/metro-stations.geojson')
-        .on('ready', function(e) {          function makeGroup(color) {
-          return new L.MarkerClusterGroup({
-            iconCreateFunction: function(cluster) {
-              return new L.DivIcon({
-                iconSize: [20, 20],
-                html: '<div style="text-align:center;color:#ffffff;background:' +
-                color + '">' + cluster.getChildCount() + '</div>'
-              });
-            }
-          }).addTo(map);
-        } var groups = {
-              red:    makeGroup('red'),
-              green:  makeGroup('green'),
-              orange: makeGroup('orange'),
-              blue:   makeGroup('blue'),
-              yellow: makeGroup('yellow')
-          };
-        e.target.eachLayer(function(layer) {
-          groups[layer.feature.properties.line].addLayer(layer);
-        });
-      });
-    }
-  };
-}
-
-}());
-
-(function() {
-  'use strict';
-
-  angular.module('transport')
-    .controller('RailPositionController', RailPositionController);
-
-  RailPositionController.$inject = ['RailPositionService'];
-
-  function RailPositionController(RailPositionService) {
-
-    this.railPos = function railPos() {
-      RailPositionService.liveTrainPositions()
-      .then(function yes(data) {
-        console.log('live Train Positions', data);
-      })
-      .catch(function failed(xhr) {
-        console.log('no live trains for you :(', xhr);
-      });
-    };
-
-  }
-
-
-}());
-
-(function() {
-  'use strict';
-
-  angular.module('transport')
-    .factory('RailPositionService', RailPositionService);
-
-  RailPositionService.$inject = ['$http'];
-
-  /**
-   * [RailPositionService description]
-   * @param {[type]} $http [description]
-   */
-  function RailPositionService($http) {
-
-    var passKey = 'f44ffd8ba84f459796d5a0870957bdb7';
-
-    return {
-      liveTrainPositions: liveTrainPositions
-    };
-
-    function liveTrainPositions() {
-      return $http({
-        url: 'https://api.wmata.com/TrainPositions/TrainPositions?contentType=json',
-        method: 'get',
-        headers: {
-          'content-type':'application/json',
-          'api_key': passKey
-        }
-      });
-    }
-  }
-
-}());
-
-(function() {
-  'use strict';
-
-  angular.module('transport')
-  .controller('RailViewController', RailViewController);
-
-  RailViewController.$inject = ['RailViewService', 'MapDetailService'];
-
-  /**
-  * [RailViewController description]
-  * @param {[type]} RailViewService [description]
-  */
-  function RailViewController(RailViewService) {
+  function MetroLineService() {
 
     var vm = this;
-    this.delayFailureMessage = false;
-    this.delayMessage = false;
-    this.parkingErrorMessage = false;
-    this.stationIncidentErrorMessage = false;
-    this.toggleCommuteInfo = false;
-    this.toggleClose = true;
-    this.incidents = [];
-    this.railIncident = [];
-    this.railParking = [];
-    this.distance = {};
-    this.position = [];
-    this.trainPosition = [];
-    this.stationNames = {};
     this.metroLineCodes = {
       'Shady Grove':'A15',
       'Rockville':'A14',
@@ -214,7 +56,7 @@
       'Woodley Park':'A04',
       'Dupont Circle':'A03',
       'Farragut North':'A02',
-      'Metro Center':'A01',
+      'metro center':'A01',
       'Gallery Place China Town':'B01',
       'Judiciary Square':'B02',
       'Union Station':'B03',
@@ -232,10 +74,9 @@
       'West Falls Church':'K06',
       'East Falls Church':'K05',
       'Ballston-MU':'K04',
-      'Virginia Square-GMU':'K03',
       'Clarendon':'K02',
       'Court House':'K01',
-      'Rossylyn':'C05',
+      'Rosslyn':'C05',
       'Foggy Bottom-GWU':'C04',
       'Farragut West':'C03',
       'McPherson Square':'C02',
@@ -258,10 +99,7 @@
       'Greensboro':'N03',
       'Tysons Corner':'N02',
       'Mclean':'N01',
-      'East Falls Church':'K05',
-      'Ballston-MU':'K04',
       'Virginia Square-GMU':'K03',
-      'Clarendon':'K02',
       'Courthouse':'K01',
       'Benning Road':'G01',
       'Capitol Heights':'G02',
@@ -300,24 +138,88 @@
       'Waterfront':'F04'
     };
 
-    var metroLineCodes = this.metroLineCodes;
-    console.log(metroLineCodes);
-    // console.log(Object.keys(metroLineCodes));
-    // console.log(Object.values(metroLineCodes));
+    return {
+      metroStationToCode: metroStationToCode,
+      liveTrainStationCode: liveTrainStationCode
+    };
 
-    this.toggleMetroInfo = function toggleMetroInfo(){
-      vm.toggleClose = true;
+    function metroStationToCode(stationName) {
+      var filteredstationName = titleCase(stationName);
+      return vm.metroLineCodes[filteredstationName];
     }
 
+    function liveTrainStationCode(stationName){
+      var filteredLiveTrain = titleCase(stationName);
+      console.log(vm.metroLineCodes[filteredLiveTrain]);
+      return vm.metroLineCodes[filteredLiveTrain];
+    }
+
+    function titleCase(str) {
+      var strSplit = str.split('');
+      strSplit[0] = strSplit[0].toUpperCase();
+      console.log('joined', strSplit.join(''));
+
+      return strSplit.join('');
+    }
+  }
+
+}());
+
+(function() {
+  'use strict';
+
+  angular.module('transport')
+  .controller('RailViewController', RailViewController);
+
+  RailViewController.$inject = ['RailViewService','MetroLineService'];
+
+  /**
+  * [RailViewController description]
+  * @param {[type]} RailViewService [description]
+  */
+  function RailViewController(RailViewService,MetroLineService) {
+
+    var vm = this;
+    this.delayFailureMessage = false;
+    this.delayMessage = true;
+    this.parkingErrorMessage = false;
+    this.stationIncidentErrorMessage = false;
+    this.toggleCommuteInfo = false;
+    this.toggleClose = true;
+    this.stationToStationError = false;
+    this.trainPositionError = false;
+    this.trainPosition = [];
+    this.liveTrainLocation = {};
+    this.incidents = [];
+    this.railIncident = [];
+    this.railParking = [];
+    this.distance = {};
+    this.liveTrains = {};
+    this.position = [];
+    this.stationNames = {};
+    this.liveTrainsCode = {};
+
+    this.toggleMetroInfo = function toggleMetroInfo() {
+      vm.toggleClose = true;
+    };
+
+    this.toggleDelayInfo = function toggleDelayInfo() {
+      vm.delayMessage = true;
+    };
+
     this.railInfo = function railInfo(){
+
       RailViewService.railInfo()
       .then(function success(data) {
-      vm.railIncident = data.data.Incidents;
-      console.log('the array', vm.railIncident);
-      console.log('success', data.data.Incidents);
+        vm.railIncident = data.data.Incidents;
+        if(vm.railIncident.length === 0) {
+          vm.noDelayMessage = 'No current Metro Delays.';
+        }
+        vm.delayMessage = false;
+        console.log('the array', vm.railIncident);
       })
       .catch(function failure(xhr) {
-        vm.delayFailureMessage = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server.';
+        vm.delayFailureMessage = 'Failed to communicate to WMATA server: Please try again later.';
         console.error('No data for you :(', xhr);
       });
     };
@@ -329,11 +231,10 @@
         console.log('Rail Parking', data.data);
       })
       .catch(function failed(xhr) {
-        vm.parkingErrorMessage = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server.'
+        vm.parkingErrorMessage = 'Failed to communicate to WMATA server: Please try again later.';
         console.error('No data for you :(', xhr);
       });
     };
-
 
     this.getIncidents = function getIncidents() {
       RailViewService.stationIncidents()
@@ -343,15 +244,15 @@
         console.log('You got it!', data.data.ElevatorIncidents);
       })
       .catch(function failure(xhr) {
-        vm.stationIncidentErrorMessage = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server.';
+        vm.stationIncidentErrorMessage = 'Failed to communicate to WMATA server: Please try again later.';
         console.log('Failed', xhr);
       });
 
     };
 
     this.getStationToStation = function getStationToStation() {
-      vm.distance.start = metroLineCodes[vm.stationNames.start];
-      vm.distance.end = metroLineCodes[vm.stationNames.end];
+      vm.distance.start = MetroLineService.metroStationToCode(vm.stationNames.start);
+      vm.distance.end = MetroLineService.metroStationToCode(vm.stationNames.end);
       RailViewService.stationDistance(vm.distance)
       .then(function success(data) {
         vm.stationToStationInfo = data.data.StationToStationInfos[0];
@@ -359,7 +260,7 @@
         console.log('Miles to Destination', vm.stationToStationInfo);
       })
       .catch(function failed(xhr) {
-        vm.stationToStationError = '(404) HTTP STATUS CODE: Failed to communicate to WMATA server.';
+        vm.stationToStationError = 'Failed to communicate to WMATA server: Please try again later.';
         console.log(xhr);
       });
     };
@@ -376,14 +277,16 @@
     };
 
     this.getTrainPositions = function getTrainPositions(){
-      RailViewService.trainPositions()
-        .then(function success(data) {
-          vm.trainPosition = data.data.Trains;
-          console.log('success', data.data);
-        })
-        .catch(function failed(xhr) {
-          console.log('failed', xhr);
-        });
+      vm.liveTrainsCode.code = MetroLineService.liveTrainStationCode(vm.liveTrains.code);
+      RailViewService.trainPositions(vm.liveTrainsCode.code)
+      .then(function success(data) {
+        vm.trainPosition = data.data.Trains;
+        console.log('success', data);
+      })
+      .catch(function failed(xhr) {
+        vm.trainPositionError = 'Failed to communicate to WMATA server: Please try again later.';
+        console.log('failed', xhr);
+      });
     };
   }
 
@@ -411,7 +314,6 @@
       railParking: railParking,
       stationIncidents: stationIncidents,
       stationDistance: stationDistance,
-      // stationPositions: stationPositions,
       trainPositions: trainPositions
     };
 
@@ -463,9 +365,10 @@
       });
     }
 
-    function trainPositions(){
+    function trainPositions(stationCode){
+      console.log(stationCode);
       return $http({
-        url: 'https://api.wmata.com/StationPrediction.svc/json/GetPrediction/B03',
+        url: 'https://api.wmata.com/StationPrediction.svc/json/GetPrediction/' + stationCode,
         method:'get',
         headers: {
           'content-type':'application/json',
