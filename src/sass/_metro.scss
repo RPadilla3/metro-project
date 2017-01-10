@@ -3,33 +3,22 @@
   text-align: center;
 
   .delay-styles {
-    padding-right: 25%;
-    padding-left: 25%;
+    @include stylePadding(sidePadding)
   }
 
   .styles {
-    padding-right: 25%;
-    padding-left: 25%;
-    margin-top: 1%;
-    list-style: none;
-    border: 2px solid black;
-    background-color: #d1cbcb;
-	  color: #2f2530;
-	  font-weight: bold;
-	  padding: 10px;
-	  -moz-border-radius: 5px;
-	  -webkit-border-radius: 5px;
+    @include style($infoBorder,$backgroundColor);
   }
 
-.alert {
-  margin-left: 30%;
-  margin-right: 30%;
-}
+  .alert {
+    margin-left: 30%;
+    margin-right: 30%;
+  }
 
-.train {
-  margin-left: 35%;
-  margin-right: 35%;
-}
+  .train {
+    margin-left: 35%;
+    margin-right: 35%;
+  }
 
 
 }
