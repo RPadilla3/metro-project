@@ -3,7 +3,7 @@
   text-align: center;
 
   .delay-styles {
-    @include stylePadding(sidePadding)
+    @include stylePadding;
   }
 
   .styles {
