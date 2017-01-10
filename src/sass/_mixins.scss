@@ -16,3 +16,14 @@
   padding-right: $sidePadding;
   padding-left: $sidePadding;
 }
+
+@mixin commute($commuteBox,$infoBorder) {
+  border: $infoBorder;
+  background: $commuteBox;
+  margin-left: 40%;
+  margin-right: 40%;
+  margin-top: 2%;
+  margin-bottom: 1%;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
