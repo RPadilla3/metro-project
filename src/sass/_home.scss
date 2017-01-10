@@ -10,7 +10,7 @@
 }
 
 .commute-border {
-@include commute($commuteBox,$infoBorder);
+@include commute($commuteBox,$infoBorder,$commuteMargin);
 }
 
 .commute {
