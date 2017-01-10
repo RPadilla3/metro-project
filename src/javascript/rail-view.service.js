@@ -71,10 +71,10 @@
       });
     }
 
-    function trainPositions(trainCode){
-      console.log(trainCode);
+    function trainPositions(stationCode){
+      console.log(stationCode);
       return $http({
-        url: 'https://api.wmata.com/StationPrediction.svc/json/GetPrediction/' + trainCode,
+        url: 'https://api.wmata.com/StationPrediction.svc/json/GetPrediction/' + stationCode,
         method:'get',
         headers: {
           'content-type':'application/json',

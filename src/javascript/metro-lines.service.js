@@ -105,8 +105,20 @@
     };
 
     return {
-      metroStationToCode: metroStationToCode
+      metroStationToCode: metroStationToCode,
+      liveTrainStationCode: liveTrainStationCode
     };
+
+    function metroStationToCode(stationName) {
+      var filteredstationName = titleCase(stationName);
+      return vm.metroLineCodes[filteredstationName];
+    }
+
+    function liveTrainStationCode(stationName){
+      var filteredLiveTrain = titleCase(stationName);
+      console.log(vm.metroLineCodes[filteredLiveTrain]);
+      return vm.metroLineCodes[filteredLiveTrain];
+    }
 
     function titleCase(str) {
       var strSplit = str.split('');
@@ -114,13 +126,6 @@
       console.log('joined', strSplit.join(''));
 
       return strSplit.join('');
-    }
-
-    console.log(titleCase('canada'));
-
-    function metroStationToCode(stationName) {
-      var filteredstationName = titleCase(stationName);
-      return vm.metroLineCodes[filteredstationName];
     }
   }
 

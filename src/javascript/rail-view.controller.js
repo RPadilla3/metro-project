@@ -14,29 +14,30 @@
 
     var vm = this;
     this.delayFailureMessage = false;
-    this.delayMessage = false;
+    this.delayMessage = true;
     this.parkingErrorMessage = false;
     this.stationIncidentErrorMessage = false;
     this.toggleCommuteInfo = false;
     this.toggleClose = true;
+    this.stationToStationError = false;
     this.trainPositionError = false;
-    this.noDelayMessage = false;
+    this.trainPosition = [];
     this.liveTrainLocation = {};
     this.incidents = [];
     this.railIncident = [];
     this.railParking = [];
     this.distance = {};
+    this.liveTrains = {};
     this.position = [];
-    this.trainPosition = [];
     this.stationNames = {};
-    
-    var metroLineCodes = this.metroLineCodes;
-    console.log(metroLineCodes);
-    // console.log(Object.keys(metroLineCodes));
-    // console.log(Object.values(metroLineCodes));
+    this.liveTrainsCode = {};
 
-    this.toggleMetroInfo = function toggleMetroInfo(){
+    this.toggleMetroInfo = function toggleMetroInfo() {
       vm.toggleClose = true;
+    };
+
+    this.toggleDelayInfo = function toggleDelayInfo() {
+      vm.delayMessage = true;
     };
 
     this.railInfo = function railInfo(){
@@ -47,6 +48,7 @@
         if(vm.railIncident.length === 0) {
           vm.noDelayMessage = 'No current Metro Delays.';
         }
+        vm.delayMessage = false;
         console.log(vm.railIncident.length);
         // vm.toggleDelayInfo = true;
         console.log('the array', vm.railIncident);
@@ -111,9 +113,9 @@
       });
     };
 
-    this.getTrainPositions = function getTrainPositions(trainCode){
-      console.log(trainCode);
-      RailViewService.trainPositions(trainCode)
+    this.getTrainPositions = function getTrainPositions(){
+      vm.liveTrainsCode.code = MetroLineService.liveTrainStationCode(vm.liveTrains.code);
+      RailViewService.trainPositions(vm.liveTrainsCode.code)
       .then(function success(data) {
         vm.trainPosition = data.data.Trains;
         console.log('success', data);

@@ -1,15 +1,15 @@
 <main id='forms'>
   <section class='metro-delays'>
     <h1>Metro Delays</h1>
-    <ul class='delay-styles' >
+    <ul class='delay-styles' ng-hide='railView.delayMessage'>
       <li ng-repeat='delay in railView.railIncident' class='styles'>
         <p class='glyphicon glyphicon-alert'>    {{delay.Description}}</p>
       </li>
     </ul>
     <p ng-show='railView.delayFailureMessage' class='alert alert-danger'>{{railView.delayFailureMessage}}</p>
-    <p ng-show='railView.noDelayMessage' class='alert alert-info'>{{railView.noDelayMessage}}</p>
-    <button class='btn btn-default' ng-click='railView.railInfo()'>Get Info</button>
-
+    <p ng-show='railView.noDelayMessage' class='alert alert-info' ng-hide='railView.delayMessage'>{{railView.noDelayMessage}}</p>
+    <button ng-show='railView.delayMessage' class='btn btn-default' ng-click='railView.railInfo()'>Get Info</button>
+    <button ng-hide='railView.delayMessage' class='btn btn-default' ng-click='railView.toggleDelayInfo()'>Close</button>
   </section>
 
   <section class='station-incidents'>
@@ -32,16 +32,16 @@
       <ul class='delay-styles' >
         <li class='form-group form-group has-success train'>
           <label for='train'>Station:</label>
-          <input type='text' id='train' class='form-control' ng-model='railView.liveTrainLocation.code' required>
+          <input type='text' id='train' class='form-control' ng-model='railView.liveTrains.code' required>
         </li>
         <li ng-repeat='position in railView.trainPosition' class='styles'>
-          <h4>Destination: {{position.DestinationName}}</h4>
+          <h4>Final Destination: {{position.DestinationName}}</h4>
           <h4>{{position.Car}} Car Train</h4>
           <h5>Time(min): {{position.Min}}</h5>
         </li>
       </ul>
       <p ng-show='railView.trainPositionError' class='alert alert-danger'>{{railView.trainPositionError}}</p>
-      <button  ng-click='railView.getTrainPositions(railView.liveTrainLocation.code)' class='btn btn-default'>Train Position</button>
+      <button  ng-click='railView.getTrainPositions()' class='btn btn-default'>Train Position</button>
     </form>
   </section>
 
@@ -57,8 +57,5 @@
 <p ng-show='railView.parkingErrorMessage' class='alert alert-danger'>{{railView.parkingErrorMessage}}</p>
 <button class='btn btn-default' ng-click='railView.railPark()'>Get Info</button>
 </section> -->
-<!-- <section mapbox class='main-map'></section>
-<section id='map'></section> -->
-
 
 </main>
