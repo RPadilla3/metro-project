@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('transport')
-    .factory('MetroLineService', MetroLineService);
+  .factory('MetroLineService', MetroLineService);
 
   function MetroLineService() {
 
@@ -42,7 +42,7 @@
       'Ballston-MU':'K04',
       'Clarendon':'K02',
       'Court House':'K01',
-      'Rossylyn':'C05',
+      'Rosslyn':'C05',
       'Foggy Bottom-GWU':'C04',
       'Farragut West':'C03',
       'McPherson Square':'C02',
@@ -105,17 +105,23 @@
     };
 
     return {
-      filterMetroStation: filterMetroStation
+      metroStationToCode: metroStationToCode
+    };
+
+    function titleCase(str) {
+      var strSplit = str.split('');
+      strSplit[0] = strSplit[0].toUpperCase();
+      console.log('joined', strSplit.join(''));
+
+      return strSplit.join('');
     }
 
-    function filterMetroStation() {
+    console.log(titleCase('canada'));
 
+    function metroStationToCode(stationName) {
+      var filteredstationName = titleCase(stationName);
+      return vm.metroLineCodes[filteredstationName];
     }
-
-
-
-
   }
-
 
 }());
