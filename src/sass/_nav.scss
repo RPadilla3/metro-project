@@ -1,21 +1,20 @@
 
 #navbar {
-  background-color: #756d6d;
+  background-color: $commuteBox;
   margin: 0;
   width: 100%;
   text-align: center;
 
   ul {
-    margin-top: 0;
-    padding: 1%;
+    // margin-top: 0;
+    // padding: 1%;
 
   }
 
   a{
-  color: #fff;
-  padding-left: 5%;
-  padding-right: 5%;
-  text-align: center;
+  color: $bodyText;
+  padding-left: 130%;
+  // text-align: center;
   }
 
   li {
