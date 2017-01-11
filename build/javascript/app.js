@@ -182,6 +182,7 @@
     var vm = this;
     this.delayFailureMessage = false;
     this.delayMessage = true;
+    this.noDelayMessage = true;
     this.parkingErrorMessage = false;
     this.stationIncidentErrorMessage = false;
     this.toggleCommuteInfo = false;
