@@ -1,12 +1,8 @@
 body {
-  background-image: url('../images/metro.jpg');
-  background-size: 100%;
-  background-repeat: no-repeat;
-  margin: 0;
-  background-color: black
-
-  // background-color: #8a9db6;
+  background: url('../images/metro.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
+
 .page-header {
   border: none;
 }

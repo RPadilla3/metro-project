@@ -5,16 +5,14 @@
   width: 100%;
   text-align: center;
 
-  ul {
-    // margin-top: 0;
-    // padding: 1%;
 
+  .nav-tab {
+    text-align: center;;
   }
 
   a{
   color: $bodyText;
-  padding-left: 130%;
-  // text-align: center;
+  text-align: center;
   }
 
   li {
@@ -23,6 +21,12 @@
     text-align: center;
   }
 }
+
+
+  ul {
+    text-align: center;
+    margin: auto 0;
+  }
 
 .nav-tabs{
   border: none;
