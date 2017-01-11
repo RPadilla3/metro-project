@@ -43,6 +43,7 @@
     var vm = this;
     this.metroLineCodes = {
       'Shady Grove':'A15',
+      'Shady grove': 'A15',
       'Rockville':'A14',
       'Twinbrook':'A13',
       'White Flint':'A12',

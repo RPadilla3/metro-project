@@ -10,23 +10,26 @@
   margin: 0;
   width: 100%;
   text-align: center; }
+  #navbar .nav-tab {
+    text-align: center; }
   #navbar a {
     color: #ffffff;
-    padding-left: 130%; }
+    text-align: center; }
   #navbar li {
     display: inline;
     list-style: none;
     text-align: center; }
 
+ul {
+  text-align: center;
+  margin: auto 0; }
+
 .nav-tabs {
   border: none; }
 
 body {
-  background-image: url("../images/metro.jpg");
-  background-size: 100%;
-  background-repeat: no-repeat;
-  margin: 0;
-  background-color: black; }
+  background: url("../images/metro.jpg") no-repeat center center fixed;
+  background-size: cover; }
 
 .page-header {
   border: none; }
