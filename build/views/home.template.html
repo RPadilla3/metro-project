@@ -12,11 +12,11 @@
   <form class='form-inline'>
     <div class='form-group form-group has-success box'>
       <label for='start' class='inputs start'>Start:</label>
-      <input type='text' id='start' ng-model='railView.stationNames.start' class='form-control' required></br>
+      <input type='text' id='start' ng-model='railView.stationNames.start'  required></br>
     </div></br>
     <div class='form-group form-group has-success destination'>
       <label for='destination' class='inputs destination'>Destination:</label>
-      <input type='text' id='destination' class='form-control' ng-model='railView.stationNames.end' required>
+      <input type='text' id='destination' ng-model='railView.stationNames.end' required>
     </div>
   </form>
   <p ng-show='railView.stationToStationError' class='alert alert-danger error-message'>{{railView.stationToStationError}}</p>
