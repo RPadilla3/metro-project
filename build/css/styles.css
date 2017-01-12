@@ -112,12 +112,21 @@ body {
   margin-right: 30%; }
 
 .generator {
-  color: #1d1d1c;
-  font-family: Verdana; }
+  color: #ffffff;
+  width: 30%;
+  margin-left: 18%;
+  float: left;
+  padding: 1%;
+  border: 2px solid rgba(232, 232, 232, 0.77);
+  background: rgba(150, 148, 142, 0.75);
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px; }
 
 .inputs {
   font-family: Verdana;
-  font-size: 1.3em; }
+  font-size: 1.3em;
+  color: #ffffff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
 
 #destination {
   padding-left: 10%; }

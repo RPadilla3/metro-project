@@ -38,14 +38,26 @@
 }
 
 .generator {
-  color: #1d1d1c;
-  font-family: Verdana;
-
+  color: $bodyText;
+  width: 30%;
+  margin-left: 18%;
+  float: left;
+  padding: 1%;
+  border: 2px  solid rgba(#e8e8e8, 0.77);
+  background: rgba(#96948e, 0.75);
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
 }
 
 .inputs {
   font-family: Verdana;
   font-size: 1.3em;
+  color: $bodyText;
+  text-shadow:
+   -1px -1px 0 #000,
+   1px -1px 0 #000,
+   -1px 1px 0 #000,
+   1px 1px 0 #000;
 }
 
 #destination {
