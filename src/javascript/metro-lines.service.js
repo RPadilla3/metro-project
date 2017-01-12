@@ -4,6 +4,11 @@
   angular.module('transport')
   .factory('MetroLineService', MetroLineService);
 
+
+  /**
+   * Factory Constructo Function that returns the functions into the controllers where injected.
+   * @return {Functions}
+   */
   function MetroLineService() {
 
     var vm = this;
@@ -117,14 +122,12 @@
 
     function liveTrainStationCode(stationName){
       var filteredLiveTrain = titleCase(stationName);
-      console.log(vm.metroLineCodes[filteredLiveTrain]);
       return vm.metroLineCodes[filteredLiveTrain];
     }
 
     function titleCase(str) {
       var strSplit = str.split('');
       strSplit[0] = strSplit[0].toUpperCase();
-      console.log('joined', strSplit.join(''));
 
       return strSplit.join('');
     }

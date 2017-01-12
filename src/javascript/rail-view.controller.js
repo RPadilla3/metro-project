@@ -7,8 +7,10 @@
   RailViewController.$inject = ['RailViewService','MetroLineService'];
 
   /**
-  * [RailViewController description]
-  * @param {[type]} RailViewService [description]
+  * Controller that passes information from the  injected service into the html
+  * @param {Service} RailViewService Service Injected with the http requests
+  * @param {Service} MetroLineService Service Injected with the onject model filtering functions
+  * @return {void}
   */
   function RailViewController(RailViewService,MetroLineService) {
 

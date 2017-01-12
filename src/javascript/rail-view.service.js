@@ -23,6 +23,10 @@
       trainPositions: trainPositions
     };
 
+    /**
+     * http request that returns metro delay information across all stations
+     * @return {Promise}
+     */
     function railInfo() {
       return $http({
         url: 'https://api.wmata.com/Incidents.svc/json/Incidents',
@@ -34,6 +38,10 @@
       });
     }
 
+    /**
+     * http request that returns station parking information across stations
+     * @return {Promise}
+     */
     function railParking() {
       return $http({
         url:'https://api.wmata.com/Rail.svc/json/jStationParking',
@@ -45,6 +53,10 @@
       });
     }
 
+    /**
+     * http request that returns elevator/escalator incidents across all stations
+     * @return {Promise}
+     */
     function stationIncidents() {
       return $http({
         url: 'https://api.wmata.com/Incidents.svc/json/ElevatorIncidents',
@@ -56,6 +68,11 @@
       });
     }
 
+    /**
+     * http request that returns the distance in miles and minutes as well as price from the stations a user inputs
+     * @param  {string} distance [String modeled into the stationNames object as stationNames.start and stationNames.end]
+     * @return {Promise}
+     */
     function stationDistance(distance) {
       return $http({
         url:'https://api.wmata.com/Rail.svc/json/jSrcStationToDstStationInfo',
@@ -71,6 +88,11 @@
       });
     }
 
+    /**
+     * http request that returns all incoming trains to the station a user inputs.
+     * @param  {String} stationCode [Information the user types in that gets modeled into liveTrains.code]
+     * @return {Promise}          
+     */
     function trainPositions(stationCode){
       console.log(stationCode);
       return $http({
