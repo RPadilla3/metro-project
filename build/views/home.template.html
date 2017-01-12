@@ -1,20 +1,21 @@
 <main id='home-page'>
   <section class='about'>
     <h1> Welcome to Metro Pass </h1>
-    <h4>An easy to use D.C Metro app to make your commute that much easier! Insert your start and stop stations below to get all the info you need for your commute!</h4>
+    <h4>An easy to use D.C Metro app to make your commute that much easier!</h4>
     <h4>Inspired by metro commuters who want a quick and easy way of getting their relevant metro information.</h4>
+    <h4 class='directions lead'>Insert your start and stop stations to get all the info you need for your commute!</h4>
     <h5>All information is provided by the Washington Metropolitan Area Transit Authority API.</h5>
   </section>
 </main>
 <section class='commute-generator'>
-  <h1 class='generator'>Get Your Commute!</h1>
+  <!-- <h1 class='generator'>Get Your Commute!</h1> -->
   <form class='form-inline'>
     <div class='form-group form-group has-success box'>
-      <label for='start' class='inputs'>Start:</label>
+      <label for='start' class='inputs start'>Start:</label>
       <input type='text' id='start' ng-model='railView.stationNames.start' class='form-control' required></br>
     </div></br>
     <div class='form-group form-group has-success destination'>
-      <label for='destination' class='inputs'>Destination:</label>
+      <label for='destination' class='inputs destination'>Destination:</label>
       <input type='text' id='destination' class='form-control' ng-model='railView.stationNames.end' required>
     </div>
   </form>
@@ -27,5 +28,5 @@
     <h5 class='commute-info' ng-show='railView.toggleCommuteInfo'>On Peak: ${{railView.stationToStationInfo.RailFare.PeakTime}}</h5>
     <h5 class='commute-info' ng-show='railView.toggleCommuteInfo'>Senior/Disabled: ${{railView.stationToStationInfo.RailFare.SeniorDisabled}}</h5>
   </div>
-  <button class='btn btn-primary btn-sm active commute' ng-click='railView.getStationToStation()'>Get Commute</button>
+  <button class=' commute' ng-click='railView.getStationToStation()'>Get Commute</button>
 </section>

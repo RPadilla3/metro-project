@@ -10,7 +10,7 @@
   float: left;
   padding: 1%;
   border: 2px  solid rgba(#e8e8e8, 0.77);
-  background: rgba(#96948e, 0.75);
+  background: rgba(#96948e, 0.93);
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
 }
@@ -22,14 +22,38 @@
 
 }
 
+.directions {
+  font-size: 1.5em;
+  color: black;
+}
+
 .commute-border {
   @include commute($commuteBox,$infoBorder);
 }
 
 .commute {
-  margin-top: 1%;
-  margin-right: 20%;
-  margin-left: 53%;
+  border-top: 1px solid #2f5928;
+  background: #2f5928;
+  background: -webkit-linear-gradient(top, #039129, #2f5928);
+  padding: 8px 16px;
+  margin-top: 2%;
+  -webkit-border-radius: 11px;
+  -moz-border-radius: 11px;
+  border-radius: 11px;
+  color: #ffffff;
+  font-size: 15px;;
+  font-family: Verdana;
+}
+
+.commute:hover {
+  border-top-color: #298a20;
+  background: #298a20;
+  color: $bodyText;
+}
+
+.commute:active {
+  border-top-color: #198532;
+  background: #198532;
 }
 
 .error-message {
@@ -54,10 +78,10 @@
   font-size: 1.3em;
   color: $bodyText;
   text-shadow:
-   -1px -1px 0 #000,
-   1px -1px 0 #000,
-   -1px 1px 0 #000,
-   1px 1px 0 #000;
+  -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;
 }
 
 #destination {
@@ -65,4 +89,5 @@
 }
 #start {
   padding-left: 10%;
+  padding--bottom: 2%;
 }

@@ -88,7 +88,7 @@ body {
   float: left;
   padding: 1%;
   border: 2px solid rgba(232, 232, 232, 0.77);
-  background: rgba(150, 148, 142, 0.75);
+  background: rgba(150, 148, 142, 0.93);
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px; }
 
@@ -96,6 +96,10 @@ body {
   list-style: none;
   color: #ffffff;
   display: block; }
+
+.directions {
+  font-size: 1.5em;
+  color: black; }
 
 .commute-border {
   border: 2px solid black;
@@ -107,9 +111,26 @@ body {
   -webkit-border-radius: 10px; }
 
 .commute {
-  margin-top: 1%;
-  margin-right: 20%;
-  margin-left: 53%; }
+  border-top: 1px solid #2f5928;
+  background: #2f5928;
+  background: -webkit-linear-gradient(top, #039129, #2f5928);
+  padding: 8px 16px;
+  margin-top: 2%;
+  -webkit-border-radius: 11px;
+  -moz-border-radius: 11px;
+  border-radius: 11px;
+  color: #ffffff;
+  font-size: 15px;
+  font-family: Verdana; }
+
+.commute:hover {
+  border-top-color: #298a20;
+  background: #298a20;
+  color: #ffffff; }
+
+.commute:active {
+  border-top-color: #198532;
+  background: #198532; }
 
 .error-message {
   margin-left: 30%;
@@ -136,6 +157,7 @@ body {
   padding-left: 10%; }
 
 #start {
-  padding-left: 10%; }
+  padding-left: 10%;
+  padding--bottom: 2%; }
 
 /*# sourceMappingURL=styles.css.map */

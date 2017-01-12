@@ -3,7 +3,7 @@
     <h1 class='label-box'>Metro Delays</h1>
     <ul class='delay-styles' ng-hide='railView.delayMessage'>
       <li ng-repeat='delay in railView.railIncident' class='styles'>
-        <p class='glyphicon glyphicon-alert'>    {{delay.Description}}</p>
+        <p class='glyphicon glyphicon-alert delay'>    {{delay.Description}}</p>
       </li>
     </ul>
     <p ng-show='railView.delayFailureMessage' class='alert alert-danger'>{{railView.delayFailureMessage}}</p>
