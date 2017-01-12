@@ -6,6 +6,10 @@
     @include stylePadding;
   }
 
+  .btn {
+    margin-top: 1%;  
+  }
+
   .styles {
     @include style($infoBorder,$backgroundColor);
   }
@@ -31,6 +35,6 @@
   margin-right: 35%;
   padding-top: 1%;
   padding-bottom: 1%;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
 }

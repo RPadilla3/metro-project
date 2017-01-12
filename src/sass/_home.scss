@@ -6,12 +6,11 @@
 .about {
   color: #ffffff;
   width: 30%;
-  margin-left: 3%;
+  margin-left: 5%;
   float: left;
   padding: 1%;
-  // margin-top: 3%;
   border: 2px  solid rgba(#e8e8e8, 0.77);
-  background: rgba(#96948e, 0.67);
+  background: rgba(#96948e, 0.75);
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
 }
@@ -24,22 +23,34 @@
 }
 
 .commute-border {
-@include commute($commuteBox,$infoBorder,$commuteMargin);
+  @include commute($commuteBox,$infoBorder);
 }
 
 .commute {
-  margin-top: 1.5%;
+  margin-top: 1%;
+  margin-right: 20%;
+  margin-left: 53%;
 }
 
 .error-message {
-  margin-top: 2%;
   margin-left: 30%;
   margin-right: 30%;
+}
+
+.generator {
+  color: #1d1d1c;
+  font-family: Verdana;
+
+}
+
+.inputs {
+  font-family: Verdana;
+  font-size: 1.3em;
 }
 
 #destination {
   padding-left: 10%;
 }
- #start {
-   padding-left: 10%;
- }
+#start {
+  padding-left: 10%;
+}

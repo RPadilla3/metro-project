@@ -8,8 +8,8 @@
   color: #2f2530;
   font-weight: bold;
   padding: 10px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
 }
 
 @mixin stylePadding {
@@ -17,10 +17,12 @@
   padding-left: 25%;
 }
 
-@mixin commute($commuteBox,$infoBorder,$commuteMargin) {
+@mixin commute($commuteBox,$infoBorder) {
   border: $infoBorder;
   background: $commuteBox;
-  margin: $commuteMargin;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+  margin-top: 2%;
+  margin-right: 20%;
+  margin-left: 53%;;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
 }
