@@ -40,6 +40,10 @@ body {
   #forms .delay-styles {
     padding-right: 25%;
     padding-left: 25%; }
+  #forms .delay {
+    font-size: 1.15em;
+    font-weight: bold;
+    color: #d12d2d; }
   #forms .btn {
     margin-top: 1%; }
   #forms .styles {
