@@ -219,10 +219,8 @@
 
       RailViewService.railInfo()
       .then(function success(data) {
-        console.log(data.data.Incidents);
         vm.railIncident = data.data.Incidents;
         if(vm.railIncident.length === 0) {
-          console.log('length', vm.railIncident.length);
           vm.noDelayMessage = 'No current Metro Delays.';
         }
         vm.delayMessage = false;

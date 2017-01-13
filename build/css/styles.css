@@ -92,9 +92,16 @@ body {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px; }
 
-.box {
-  margin-bottom: 6%;
-  margin-top: 6%; }
+.group {
+  color: black;
+  width: 30%;
+  margin-left: 26%;
+  float: left;
+  padding: 1%;
+  border: 2px solid rgba(232, 232, 232, 0.77);
+  background: rgba(150, 148, 142, 0.93);
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px; }
 
 .destination {
   margin-bottom: 3%;
@@ -112,9 +119,9 @@ body {
 .commute-border {
   border: 2px solid black;
   background: rgba(113, 102, 102, 0.8);
-  margin-top: 2%;
-  margin-right: 20%;
-  margin-left: 53%;
+  margin-top: 3%;
+  margin-right: 10%;
+  margin-left: 10%;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px; }
 
@@ -163,11 +170,11 @@ body {
 
 #destination {
   padding-left: 10%;
-  width: 120%; }
+  width: 78%; }
 
 #start {
   padding-left: 10%;
-  padding--bottom: 2%;
+  padding-bottom: 2%;
   width: 100%; }
 
 /*# sourceMappingURL=styles.css.map */
