@@ -7,7 +7,7 @@
       </li>
     </ul>
     <p ng-show='railView.delayFailureMessage' class='alert alert-danger'>{{railView.delayFailureMessage}}</p>
-    <p ng-hide='railView.noDelayMessage' class='alert alert-info' ng-hide='railView.noDelayMessage'>{{railView.noDelayMessage}}</p>
+    <p ng-show='railView.noDelayMessage' class='alert alert-info'>{{railView.noDelayMessage}}</p>
     <button ng-show='railView.delayMessage' class='btn btn-default' ng-click='railView.railInfo()'>Get Info</button>
     <button ng-hide='railView.delayMessage' class='btn btn-default' ng-click='railView.toggleDelayInfo()'>Close</button>
   </section>
