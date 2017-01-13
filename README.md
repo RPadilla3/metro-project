@@ -24,4 +24,5 @@ These tasks include:
 * grunt-contrib-watch
 * grunt-contrib-sass
 * grunt-karma
+
 You are going to want to save those as dev-dependencies while installing so use `npm install --save-dev grunt-contrib-jshint`(example). 
