@@ -25,4 +25,7 @@ These tasks include:
 * grunt-contrib-sass
 * grunt-karma
 
-You are going to want to save those as dev-dependencies while installing so use `npm install --save-dev grunt-contrib-jshint`(example). 
+You are going to want to save those as dev-dependencies while installing so use
+(example)
+
+`npm install --save-dev grunt-contrib-jshint`
