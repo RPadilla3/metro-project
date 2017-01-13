@@ -91,10 +91,11 @@ module.exports = function(grunt) {
             'node_modules/angular-ui-router/release/angular-ui-router.js',
             'node_modules/angular-mocks/angular-mocks.js',
             'src/javascript/transport.module.js',
-            'src/javascript/rail-view.controller.js',
             'src/javascript/rail-view.service.js',
+            'src/javascript/rail-view.controller.js',
             'test/specs/rail-view.controller.spec.js',
-            'test/specs/rail-view.service.spec.js'
+            'test/specs/rail-view.service.spec.js',
+            'test/specs/metro-lines.service.spec.js'
           ]
         }
       }
