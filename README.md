@@ -20,9 +20,11 @@ To work on this code after the repo is cloned you will need to run an `npm insta
 You will need to install node first in order to install all other dependencies.
 
 * [Install node.js](https://nodejs.org/en/)
-* [mocha](https://mochajs.org/)
-* [chai](http://chaijs.com/)
-* [grunt](http://gruntjs.com/)
+* [Install mocha](https://mochajs.org/)
+* [Install chai](http://chaijs.com/)
+* [Install grunt](http://gruntjs.com/)
+
+### Testing
 
 As for testing you will need to install the mocha framework and chai library onto your machine, and for automated task running this app is using grunt, You will need to install some tasks to run onto your gruntfile in order to work on this project smoothly.
 These tasks include:
