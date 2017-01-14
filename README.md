@@ -20,9 +20,9 @@ To work on this code after the repo is cloned you will need to run an `npm insta
 You will need to install node first in order to install all other dependencies.
 
 * [Install node.js](https://nodejs.org/en/)
-* [Install mocha](https://mochajs.org/)
+* [Install mocha](https://mochajs.org/#installation)
 * [Install chai](http://chaijs.com/)
-* [Install grunt](http://gruntjs.com/)
+* [Install grunt](http://gruntjs.com/getting-started)
 
 ### Testing
 
