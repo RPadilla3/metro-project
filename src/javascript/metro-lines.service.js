@@ -83,7 +83,7 @@
       'Franconia-Springfield':'J03',
       'Van Dorn Street':'J02',
       'King Street-Old Town':'C13',
-      'Braddock Park':'C12',
+      'Braddock Heights':'C12',
       'Braddock': 'C12',
       'Potomac Yard':'C11',
       'Ronald Reagan Washington National Airport':'C10',
