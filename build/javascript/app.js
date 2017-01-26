@@ -26,7 +26,67 @@
       templateUrl: 'views/metro.template.html',
       controller: 'RailViewController',
       controllerAs: 'railView'
+    })
+    .state({
+      name: 'bus',
+      url: '/bus',
+      templateUrl: 'views/bus.template.html',
+      controller: 'BusViewController',
+      controllerAs: 'busView'
     });
+
+  }
+
+}());
+
+(function() {
+  'use strict';
+
+  angular.module('transport')
+    .controller(BusViewController, 'BusViewController');
+
+  BusViewController.$inject = ['BusViewService']
+
+  function BusViewController(BusViewService) {
+    var vm = this;
+
+    this.getBusInfo = getBusInfo()
+      BusViewService.busInfo()
+      .then(function success(data) {
+        console.log('success', data);
+      })
+      .catch(function failed(xhr) {
+        console.log('failed', xhr);
+      });
+  };
+
+}());
+
+(function() {
+  'use strict';
+
+  angular.module('transport')
+  .factory(BusViewService, 'BusViewService');
+
+  BusViewService.$inject = ['http'];
+
+  function BusViewService(http) {
+    var passKey = 'f44ffd8ba84f459796d5a0870957bdb7';
+
+    return {
+      busInfo: busInfo
+    }
+
+    function busInfo() {
+      return $http({
+        url: 'https://api.wmata.com/NextBusService.svc/json/jPredictions?StopID=1001193',
+        method: 'get',
+        headers: {
+          'content-type':'application/json',
+          'api_key': passKey
+        }
+      });
+    }
 
   }
 
@@ -64,6 +124,8 @@
       'Farragut North':'A02',
       'metro center':'A01',
       'Gallery Place China Town':'B01',
+      'Gallery place': 'B01',
+      'china town': 'B01',
       'Judiciary Square':'B02',
       'Union Station':'B03',
       'Noma':'B35',
@@ -115,7 +177,8 @@
       'Franconia-Springfield':'J03',
       'Van Dorn Street':'J02',
       'King Street-Old Town':'C13',
-      'Braddock Road':'C12',
+      'Braddock Heights':'C12',
+      'Braddock': 'C12',
       'Potomac Yard':'C11',
       'Ronald Reagan Washington National Airport':'C10',
       'Crystal City':'C09',
@@ -141,6 +204,7 @@
       'Congress Heights':'F07',
       'Anacostia':'F06',
       'Navy Yard - Ballpark':'F05',
+      'navy yard': 'F05',
       'Waterfront':'F04'
     };
 
@@ -393,7 +457,7 @@
     /**
      * http request that returns all incoming trains to the station a user inputs.
      * @param  {String} stationCode [Information the user types in that gets modeled into liveTrains.code]
-     * @return {Promise}          
+     * @return {Promise}
      */
     function trainPositions(stationCode){
       console.log(stationCode);

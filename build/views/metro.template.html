@@ -37,7 +37,7 @@
         <li ng-repeat='position in railView.trainPosition' class='styles'>
           <h4>Final Destination: {{position.DestinationName}}</h4>
           <h4>{{position.Car}} Car Train</h4>
-          <h5>Time(min): {{position.Min}}</h5>
+          <h5>Arrival Time: {{position.Min}}  min</h5>
         </li>
       </ul>
       <p ng-show='railView.trainPositionError' class='alert alert-danger'>{{railView.trainPositionError}}</p>
