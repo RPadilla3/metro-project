@@ -110,6 +110,7 @@
       'Congress Heights':'F07',
       'Anacostia':'F06',
       'Navy Yard - Ballpark':'F05',
+      'navy yard': 'F05',
       'Waterfront':'F04'
     };
 
